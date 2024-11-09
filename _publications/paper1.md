@@ -2,7 +2,7 @@
 title: "L7LB: High Performance Layer-7 Load Balancing on Heterogeneous Programmable Platforms"
 collection: publications
 category: conferences
-permalink: /publication/2023-05-20_L7LB_High_Performance_Layer-7_Load_Balancing_on_Heterogeneous_Programmable_Platforms
+permalink: /publication/paper1
 date: 2023-05-20
 venue: 'IEEE INFOCOM 2023-IEEE Conference on Computer Communications Workshops (INFOCOM WKSHPS)'
 #slidesurl: #'http://academicpages.github.io/files/slides1.pdf'
