@@ -2,7 +2,7 @@
 title: "P4runpro: Enabling Runtime Programmability for RMT Programmable Switches"
 collection: publications
 category: conferences
-permalink: /publication/2024-08-04-P4runpro-Enabling-Runtime-Programmaility-for-RMT-Programmable-Switches
+permalink: /publication/2024-08-04_P4runpro_Enabling_Runtime_Programmaility_for_RMT_Programmable_Switches
 date: 2024-08-04
 venue: 'Proceedings of the ACM SIGCOMM 2024 Conference'
 paperurl: 'https://dl.acm.org/doi/pdf/10.1145/3651890.3672230'
