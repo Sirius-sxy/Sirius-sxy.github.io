@@ -10,4 +10,7 @@ venue: '人民邮电出版社 (POSTS & TELECOM PRESS)'
 ---
 
 ISBN 978-7-115-62091-0
-Responsible for writing chapter "十、超越时代的思考者：艾伦·图灵"
+
+I'm responsible for writing the chapter "十、超越时代的思考者：艾伦·图灵".
+
+[Link](https://item.jd.com/10124268549546.html)
