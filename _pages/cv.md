@@ -11,7 +11,7 @@ redirect_from:
 
 Education
 ======
-* Ph.D in Institute of Network Science and Cyberspace, Tsinghua University, 2029(expected)
+* Ph.D in Institute of Network Science and Cyberspace, Tsinghua University, 2024-2029(expected)
 * B.S. in Department of Automation, Tsinghua University, 2020-2024
 
 Publications
