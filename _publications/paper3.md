@@ -2,7 +2,7 @@
 title: "6Map: Enabling Fast Active IPv6 Address Discovery with Programmable Switches"
 collection: publications
 category: conferences
-permalink: /publication/paper4
+permalink: /publication/paper3
 date: 2025-5-19 
 venue: 'IEEE INFOCOM 2025'
 #slidesurl: #'http://academicpages.github.io/files/slides1.pdf'
