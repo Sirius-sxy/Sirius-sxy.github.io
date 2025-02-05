@@ -7,7 +7,11 @@ date: 2025-4-28
 venue: 'Proceedings of the ACM Web Conference 2025'
 #slidesurl: #'http://academicpages.github.io/files/slides1.pdf'
 #paperurl: 'https://sirius-sxy.github.io/files/L7LB_poster.pdf'
-citation: "Xiaoyi Shi, Lin He, Jiasheng Zhou, Yifan Yang, and Ying Liu. 2025. Miresga: Accelerating Layer-7 Load Balancing with Programmable Switches. In Proceedings of the ACM Web Conference 2025 (WWW '25), April 28–May 2, 2025, Sydney, NSW, Australia. ACM, New York, NY, USA"
+citation: "Xiaoyi Shi, Lin He, Jiasheng Zhou, Yifan Yang, and Ying Liu. 2025. Miresga:
+Accelerating Layer-7 Load Balancing with Programmable Switches. In
+Proceedings of the ACM Web Conference 2025 (WWW '25), April 28-May
+2, 2025, Sydney, NSW, Australia. ACM, New York, NY, USA, 11 pages.
+https://doi.org/10.1145/3696410.3714809"
 ---
 
 As online cloud services expand rapidly, layer-7 load balancing has become indispensable for maintaining service availability and performance. The emergence of programmable switches with both high performance and a certain degree of flexibility has made it possible to apply programmable switches to load balancing. Nevertheless, the limited memory capacity and the relatively sluggish speed of table entry insertion and deletion of programmable switches have severely constrained their performance. 
