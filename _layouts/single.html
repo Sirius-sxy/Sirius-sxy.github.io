@@ -47,10 +47,6 @@ layout: default
       <section class="page__content" itemprop="text">
         {{ content }}
 
-        {% if page.abstract %}
-          <p style="font-family: 'Times New Roman', Times, serif;"> {{ page.abstract }}</p>
-        {% endif %}
-
         {% if page.citation and page.paperurl and page.slidesurl and page.reviewsurl and page.posterurl %}
           <p><span><em>Recommended citation:</em> {{ page.citation }}<br /></span><a href="{{ page.paperurl }}">Download Paper</a> | <a href="{{ page.slidesurl }}">Download Slides</a> | <a href="{{ page.posterurl }}">Download Poster</a> | <a href="{{ page.reviewsurl }}">View Reviews</a></p>
         {% elsif page.citation and page.paperurl and page.slidesurl and page.reviewsurl %}
