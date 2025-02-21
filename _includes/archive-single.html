@@ -78,5 +78,17 @@
       <p><a href=" {{ post.reviewsurl }} ">View Reviews</a></p>
     {% endif %}
 
+    {% if post.opensource%}
+      <p>Download Code:</p>
+      {% if post.repogiturl %}
+        <p> <a href="{{post.repogiturl}}"><i class="fab fa-fw fa-github icon-pad-right" aria-hidden="true"></i>Github</a></p>
+      {% endif %}
+      {% if post.repozenodourl %}
+        <p> <a href="{{post.repozenodourl}}">Zenodo</a></p>
+      {% endif %}
+      {% if post.repodoiurl %}
+        <p> <a href="{{post.repodoiurl}}">DOI</a></p>
+      {% endif %}
+    {% endif %}
   </article>
 </div>

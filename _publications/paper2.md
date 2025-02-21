@@ -6,6 +6,8 @@ permalink: /publication/paper2
 date: 2024-08-04
 venue: 'Proceedings of the ACM SIGCOMM 2024 Conference'
 #slidesurl: 'http://academicpages.github.io/files/slides1.pdf'
+opensource: true
+repogiturl: 'https://github.com/P4runpro/P4runpro'
 paperurl: 'https://dl.acm.org/doi/abs/10.1145/3651890.3672230'
 citation: "Yifan Yang, Lin He, Jiasheng Zhou, Xiaoyi Shi, Jiamin Cao, and Ying Liu. 2024. P4runpro: Enabling Runtime Programmability for RMT Programmable Switches. In Proceedings of the ACM SIGCOMM 2024 Conference (ACM SIGCOMM '24). Association for Computing Machinery, New York, NY, USA, 921–937.
 https://doi.org/10.1145/3651890.3672230"
