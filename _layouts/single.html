@@ -46,29 +46,57 @@ layout: default
 
       <section class="page__content" itemprop="text">
         {{ content }}
-
-        {% if page.paperurl and page.slidesurl and page.reviewsurl and page.posterurl %}
-          <p style="font-size: smaller"><a href="{{ page.paperurl }}">Download Paper</a> | <a href="{{ page.slidesurl }}">Download Slides</a> | <a href="{{ page.posterurl }}">Download Poster</a> | <a href="{{ page.reviewsurl }}">View Reviews</a></p>
-        {% elsif page.paperurl and page.slidesurl and page.reviewsurl %}
-          <p style="font-size: smaller"><a href="{{ page.paperurl }}">Download Paper</a> | <a href="{{ page.slidesurl }}">Download Slides</a> | <a href="{{ page.reviewsurl }}">View Reviews</a></p>
-        {% elsif page.paperurl and page.slidesurl and page.posterurl %}
-          <p style="font-size: smaller"><a href="{{ page.paperurl }}">Download Paper</a> | <a href="{{ page.slidesurl }}">Download Slides</a> | <a href="{{ page.posterurl }}">Download Poster</a></p>
-        {% elsif page.paperurl and page.posterurl and page.reviewsurl %}
-          <p style="font-size: smaller"><a href="{{ page.paperurl }}">Download Paper</a> | <a href="{{ page.posterurl }}">Download Poster</a> | <a href="{{ page.reviewsurl }}">View Reviews</a></p>
-        {% elsif page.paperurl and page.slidesurl %}
-          <p style="font-size: smaller"><a href="{{ page.paperurl }}">Download Paper</a> | <a href="{{ page.slidesurl }}">Download Slides</a></p>
-        {% elsif page.paperurl and page.reviewsurl %}
-          <p style="font-size: smaller"><a href="{{ page.paperurl }}">Download Paper</a> | <a href="{{ page.reviewsurl }}">View Reviews</a></p>
-        {% elsif page.paperurl and page.posterurl %}
-          <p style="font-size: smaller"><a href="{{ page.paperurl }}">Download Paper</a> | <a href="{{ page.posterurl }}">Download Poster</a></p>
-        {% elsif page.paperurl %}
-          <p style="font-size: smaller"><a href="{{ page.paperurl }}">Download Paper</a></p>
-        {% elsif page.reviewsurl %}
-          <p style="font-size: smaller"><a href="{{ page.reviewsurl }}">View Reviews</a></p>
+        {% if post.abstract %}
+          <p style="font-family: 'Times New Roman', Times, serif;"> {{post.abstract}}</p>
+        {% endif %}
+        {% if post.citation and post.paperurl and post.slidesurl and post.reviewsurl and post.posterurl %}
+          <p><span><em>Recommended citation:</em> {{ post.citation }}<br /></span><a href="{{ post.paperurl }}">Download Paper</a> | <a href="{{ post.slidesurl }}">Download Slides</a> | <a href="{{ post.posterurl }}">Download Poster</a> | <a href="{{ post.reviewsurl }}">View Reviews</a></p>
+        {% elsif post.citation and post.paperurl and post.slidesurl and post.reviewsurl %}
+          <p><span><em>Recommended citation:</em> {{ post.citation }}<br /></span><a href="{{ post.paperurl }}">Download Paper</a> | <a href="{{ post.slidesurl }}">Download Slides</a> | <a href="{{ post.reviewsurl }}">View Reviews</a></p>
+        {% elsif post.citation and post.paperurl and post.slidesurl and post.posterurl %}
+          <p><span><em>Recommended citation:</em> {{ post.citation }}<br /></span><a href="{{ post.paperurl }}">Download Paper</a> | <a href="{{ post.slidesurl }}">Download Slides</a> | <a href="{{ post.posterurl }}">Download Poster</a></p>
+        {% elsif post.citation and post.paperurl and post.posterurl and post.reviewsurl %}
+          <p><span><em>Recommended citation:</em> {{ post.citation }}<br /></span><a href="{{ post.paperurl }}">Download Paper</a> | <a href="{{ post.posterurl }}">Download Poster</a> | <a href="{{ post.reviewsurl }}">View Reviews</a></p>
+        {% elsif post.citation and post.paperurl and post.slidesurl %}
+          <p><span><em>Recommended citation:</em> {{ post.citation }}<br /></span><a href="{{ post.paperurl }}">Download Paper</a> | <a href="{{ post.slidesurl }}">Download Slides</a></p>
+        {% elsif post.citation and post.paperurl and post.reviewsurl %}
+          <p><span><em>Recommended citation:</em> {{ post.citation }}<br /></span><a href="{{ post.paperurl }}">Download Paper</a> | <a href="{{ post.reviewsurl }}">View Reviews</a></p>
+        {% elsif post.citation and post.paperurl and post.posterurl %}
+          <p><span><em>Recommended citation:</em> {{ post.citation }}<br /></span><a href="{{ post.paperurl }}">Download Paper</a> | <a href="{{ post.posterurl }}">Download Poster</a></p>
+        {% elsif post.citation and post.paperurl %}
+          <p><span><em>Recommended citation:</em> {{ post.citation }}<br /></span><a href="{{ post.paperurl }}">Download Paper</a></p>
+        {% elsif post.citation and post.reviewsurl %}
+          <p><span><em>Recommended citation:</em> {{ post.citation }}<br /></span><a href="{{ post.reviewsurl }}">View Reviews</a></p>
+        {% elsif post.citation %}
+          <p><span><em>Recommended citation:</em> {{ post.citation }}<br /></span></p>
+        {% elsif post.paperurl %}
+          <p><a href="{{ post.paperurl }}">Download Paper</a></p>
+        {% elsif post.reviewsurl %}
+          <p><a href="{{ post.reviewsurl }}">View Reviews</a></p>
         {% endif %}
 
-        {% if page.link %}<div><a href="{{ page.link }}" class="btn">{{ site.data.ui-text[site.locale].ext_link_label | default: "Direct Link" }}</a></div>{% endif %}
-      </section>
+        {% if post.opensource %}
+          <p>Download Code:</p>
+          {% if post.repogiturl and post.repozenodourl and post.repodoiurl %}
+            <p><a href="{{ post.repogiturl }}">Github</a> | <a href="{{ post.repozenodourl }}">Zenodo</a> | <a href="{{ post.repodoiurl }}">DOI</a></p>
+          {% elsif post.repogiturl and post.repozenodourl %}
+            <p><a href="{{ post.repogiturl }}">Github</a> | <a href="{{ post.repozenodourl }}">Zenodo</a></p>
+          {% elsif post.repozenodourl and post.repodoiurl %}
+            <p><a href="{{ post.repozenodourl }}">Zenodo</a> | <a href="{{ post.repodoiurl }}">DOI</a></p>
+          {% elsif post.repogiturl %}
+            <p><a href="{{ post.repogiturl }}">Github</a></p>
+          {% elsif post.repozenodourl %}
+            <p><a href="{{ post.repozenodourl }}">Zenodo</a></p>
+          {% endif %}
+          
+          {% if post.repolicense == 'AGPL3' %}
+            <p> Kindly noting that this repo is under <a href="https://www.gnu.org/licenses/agpl-3.0.html">GNU Affero Public License v3</a>. Please ensure compliance with the terms of the license when using this repository.</p>
+          {% endif %}
+        {% endif %}
+
+        {% if page.link %}
+          <div><a href="{{ page.link }}" class="btn">{{ site.data.ui-text[site.locale].ext_link_label | default: "Direct Link" }}</a></div>
+        {% endif %}
 
       <footer class="page__meta">
         {% if site.data.ui-text[site.locale].meta_label %}
