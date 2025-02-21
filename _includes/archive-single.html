@@ -52,26 +52,30 @@
     <p class="archive__item-excerpt" itemprop="description"><p>{{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}<strong><a href="{{ base_path }}{{ post.url }}" rel="permalink"> Read more</a></strong></p></p>
     {% endif %}
     
+    {% if post.abstract %}
+      <p style="font-family: 'Times New Roman', Times, serif;"> {{post.abstract}}</p>
+    {% endif %}
+
     {% if post.citation and post.paperurl and post.slidesurl and post.reviewsurl and post.posterurl%}
-      <p>Recommended citation: {{ post.citation }}<br /><a href="{{ post.paperurl }}">Download Paper</a> | <a href="{{ post.slidesurl }}">Download Slides</a> | <a href="{{post.posterurl}}">Download Poster</a> | <a href="{{post.reviewsurl}}">View Reviews</a></p>
+      <p><span><em>Recommended citation:</em> {{ post.citation }}<br /></span><a href="{{ post.paperurl }}">Download Paper</a> | <a href="{{ post.slidesurl }}">Download Slides</a> | <a href="{{post.posterurl}}">Download Poster</a> | <a href="{{post.reviewsurl}}">View Reviews</a></p>
     {% elsif post.citation and post.paperurl and post.slidesurl and post.reviewsurl%}
-      <p>Recommended citation: {{ post.citation }}<br /><a href="{{ post.paperurl }}">Download Paper</a> | <a href="{{ post.slidesurl }}">Download Slides</a> | <a href="{{post.reviewsurl}}">View Reviews</a></p>
+      <p><span><em>Recommended citation:</em> {{ post.citation }}<br /></span><a href="{{ post.paperurl }}">Download Paper</a> | <a href="{{ post.slidesurl }}">Download Slides</a> | <a href="{{post.reviewsurl}}">View Reviews</a></p>
     {% elsif post.citation and post.paperurl and post.slidesurl and post.posterurl%}
-      <p>Recommended citation: {{ post.citation }}<br /><a href="{{ post.paperurl }}">Download Paper</a> | <a href="{{ post.slidesurl }}">Download Slides</a> | <a href="{{post.posterurl}}">Download Poster</a></p>
+      <p><span><em>Recommended citation:</em> {{ post.citation }}<br /></span><a href="{{ post.paperurl }}">Download Paper</a> | <a href="{{ post.slidesurl }}">Download Slides</a> | <a href="{{post.posterurl}}">Download Poster</a></p>
     {% elsif post.citation and post.paperurl and post.posterurl and post.reviewsurl%}
-      <p>Recommended citation: {{ post.citation }}<br /><a href="{{ post.paperurl }}">Download Paper</a> |  <a href="{{post.posterurl}}">Download Poster</a> | <a href="{{post.reviewsurl}}">View Reviews</a></p>
+      <p><span><em>Recommended citation:</em> {{ post.citation }}<br /></span><a href="{{ post.paperurl }}">Download Paper</a> |  <a href="{{post.posterurl}}">Download Poster</a> | <a href="{{post.reviewsurl}}">View Reviews</a></p>
     {% elsif post.citation and post.paperurl and post.slidesurl%}
-      <p>Recommended citation: {{ post.citation }}<br /><a href="{{ post.paperurl }}">Download Paper</a> | <a href="{{ post.slidesurl }}">Download Slides</a></p>
+      <p><span><em>Recommended citation:</em> {{ post.citation }}<br /></span><a href="{{ post.paperurl }}">Download Paper</a> | <a href="{{ post.slidesurl }}">Download Slides</a></p>
     {% elsif post.citation and post.paperurl and post.reviewsurl%}
-      <p>Recommended citation: {{ post.citation }}<br /><a href="{{ post.paperurl }}">Download Paper</a> | <a href="{{post.reviewsurl}}">View Reviews</a></p>
+      <p><span><em>Recommended citation:</em> {{ post.citation }}<br /></span><a href="{{ post.paperurl }}">Download Paper</a> | <a href="{{post.reviewsurl}}">View Reviews</a></p>
     {% elsif post.citation and post.paperurl and post.posterurl%}
-      <p>Recommended citation: {{ post.citation }}<br /><a href="{{ post.paperurl }}">Download Paper</a> | <a href="{{post.posterurl}}">Download Poster</a></p>
+      <p><span><em>Recommended citation:</em> {{ post.citation }}<br /></span><a href="{{ post.paperurl }}">Download Paper</a> | <a href="{{post.posterurl}}">Download Poster</a></p>
     {% elsif post.citation and post.paperurl%}
-      <p>Recommended citation: {{ post.citation }}<br /><a href="{{ post.paperurl }}">Download Paper</a></p>
+      <p><span><em>Recommended citation:</em> {{ post.citation }}<br /></span><a href="{{ post.paperurl }}">Download Paper</a></p>
     {% elsif post.citation and post.reviewsurl%}
-      <p>Recommended citation: {{ post.citation }}<br /><a href="{{post.reviewsurl}}">View Reviews</a></p>
+      <p><span><em>Recommended citation:</em> {{ post.citation }}<br /></span><a href="{{post.reviewsurl}}">View Reviews</a></p>
     {% elsif post.citation %}
-      <p>Recommended citation: {{ post.citation }}</p>
+      <p><span><em>Recommended citation:</em> {{ post.citation }}<br /></span></p>
     {% elsif post.paperurl %}
       <p><a href=" {{ post.paperurl }} ">Download Paper</a></p>
     {% elsif post.reviewsurl %}
@@ -80,15 +84,18 @@
 
     {% if post.opensource%}
       <p>Download Code:</p>
-      {% if post.repogiturl %}
-        <p> <a href="{{post.repogiturl}}"><i class="fab fa-fw fa-github icon-pad-right" aria-hidden="true"></i>Github</a></p>
-      {% endif %}
-      {% if post.repozenodourl %}
+      {% if post.repogiturl and post.repozenodourl and post.repodoiurl %}
+        <p> <a href="{{post.repogiturl}}">Github</a> | <a href="{{post.repozenodourl}}">Zenodo</a> | <a href="{{post.repodoiurl}}">DOI</a></p>
+      {% elsif post.repogiturl and post.repozenodourl %}
+        <p> <a href="{{post.repogiturl}}">Github</a> | <a href="{{post.repozenodourl}}">Zenodo</a></p>
+      {% elsif post.repozenodourl and post.repodoiurl %}
+        <p> <a href="{{post.repozenodourl}}">Zenodo</a> | <a href="{{post.repodoiurl}}">DOI</a></p>
+      {% elsif post.repogiturl %}
+        <p> <a href="{{post.repogiturl}}">Github</a></p>
+      {% elsif post.repozenodourl %}
         <p> <a href="{{post.repozenodourl}}">Zenodo</a></p>
       {% endif %}
-      {% if post.repodoiurl %}
-        <p> <a href="{{post.repodoiurl}}">DOI</a></p>
-      {% endif %}
+      
       {% if post.repolicense == 'AGPL3'%}
         <p> Kindly noting that this repo is under <a href="https://www.gnu.org/licenses/agpl-3.0.html">GNU Affero Public License v3</a>. Please ensure compliance with the terms of the license when using this repository.</p>
       {% endif %}
