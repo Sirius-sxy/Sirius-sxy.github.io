@@ -10,7 +10,7 @@ opensource: true
 repogiturl: 'https://github.com/THUNAME/Miresga'
 repozenodourl: 'https://zenodo.org/records/14792352'
 repodoiurl: 'https://doi.org/10.5281/zenodo.14792351'
-repolicense: 'https://www.gnu.org/licenses/agpl-3.0.html'
+repolicense: 'AGPL3'
 paperurl: 'https://sirius-sxy.github.io/files/paper4.pdf'
 reviewsurl: 'https://openreview.net/forum?id=iQEcCo2Mn8'
 citation: "Xiaoyi Shi, Lin He, Jiasheng Zhou, Yifan Yang, and Ying Liu. 2025. Miresga: Accelerating Layer-7 Load Balancing with Programmable Switches. In Proceedings of the ACM Web Conference 2025 (WWW '25), April 28-May 2, 2025, Sydney, NSW, Australia. ACM, New York, NY, USA, 11 pages. https://doi.org/10.1145/3696410.3714809"

@@ -89,6 +89,9 @@
       {% if post.repodoiurl %}
         <p> <a href="{{post.repodoiurl}}">DOI</a></p>
       {% endif %}
+      {% if post.repolicense == 'AGPL3'%}
+        <p> Kindly noting that this repo is under <a href="https://www.gnu.org/licenses/agpl-3.0.html">GNU Affero Public License v3</a>. Please ensure compliance with the terms of the license when using this repository.</p>
+      {% endif %}
     {% endif %}
   </article>
 </div>
