@@ -41,7 +41,7 @@
         {% if post.collection == 'teaching' %}
           <p> {{ post.type }}, <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }} </p>
         {% elsif post.collection == 'publications' %}
-          {% if post.published}
+          {% if post.published %}
             <p style="font-size: smaller;font-family: 'Times New Roman', Times, serif"><em>Published in {{ post.venue }}, {{ post.date | default: "1900-01-01" | date: "%Y" }}</em> </p>
           {% else %}
             <p style="font-size: smaller;font-family: 'Times New Roman', Times, serif"><em>To be Published in {{ post.venue }}, {{ post.date | default: "1900-01-01" | date: "%Y" }}</em> </p>
