@@ -4,6 +4,7 @@ collection: publications
 category: books
 permalink: /publication/book1
 date: 2024-11-01
+published: true
 venue: '人民邮电出版社 (POSTS & TELECOM PRESS)'
 #slidesurl: #'http://academicpages.github.io/files/slides1.pdf'
 #paperurl: 'https://ieeexplore.ieee.org/abstract/document/10225882'
