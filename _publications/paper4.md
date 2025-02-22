@@ -33,7 +33,7 @@ Miresga uses three components to complete these three tasks: the programmable sw
 
 ![](../images/Miresga_Arch.jpg)
 
-For more details, please refer to our paper and the GitHub repository. To run Miresga, follow the instructions in the GitHub repository. If you have any questions, feel free to open an issue in the repository or send us an email to shixiaoy20@gmail.com. We will address them as soon as possible.
+For more details, please refer to [our paper](https://sirius-sxy.github.io/files/paper4.pdf) and the [GitHub repository](https://github.com/THUNAME/Miresga). To run Miresga, please follow the instructions in the GitHub repository. If you have any questions, feel free to open an issue in the repository or send us an email to [shixiaoy20@gmail.com](shixiaoyi20@gmail.com). We will address them as soon as possible.
 
 # III. Third-Party Dependencies
 
