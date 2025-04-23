@@ -3,10 +3,11 @@ title: "Miresga: Accelerating Layer-7 Load Balancing with Programmable Switches"
 collection: publications
 category: conferences
 permalink: /publication/paper4
-date: 2025-4-23
+date: 2025-4-28
 venue: 'Proceedings of the ACM Web Conference 2025'
 #slidesurl: #'http://academicpages.github.io/files/slides1.pdf'
 opensource: true
+published: true
 repogiturl: 'https://github.com/THUNAME/Miresga'
 repozenodourl: 'https://zenodo.org/records/14792352'
 repodoiurl: 'https://doi.org/10.5281/zenodo.14792351'
