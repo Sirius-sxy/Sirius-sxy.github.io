@@ -3,7 +3,7 @@ title: "Miresga: Accelerating Layer-7 Load Balancing with Programmable Switches"
 collection: publications
 category: conferences
 permalink: /publication/paper4
-date: 2025-4-28 
+date: 2025-4-23
 venue: 'Proceedings of the ACM Web Conference 2025'
 #slidesurl: #'http://academicpages.github.io/files/slides1.pdf'
 opensource: true
@@ -11,7 +11,7 @@ repogiturl: 'https://github.com/THUNAME/Miresga'
 repozenodourl: 'https://zenodo.org/records/14792352'
 repodoiurl: 'https://doi.org/10.5281/zenodo.14792351'
 repolicense: 'AGPL3'
-paperurl: 'https://sirius-sxy.github.io/files/paper4.pdf'
+paperurl: 'https://dl.acm.org/doi/pdf/10.1145/3696410.3714809'
 reviewsurl: 'https://openreview.net/forum?id=iQEcCo2Mn8'
 citation: "Xiaoyi Shi, Lin He, Jiasheng Zhou, Yifan Yang, and Ying Liu. 2025. Miresga: Accelerating Layer-7 Load Balancing with Programmable Switches. In Proceedings of the ACM Web Conference 2025 (WWW '25), April 28-May 2, 2025, Sydney, NSW, Australia. ACM, New York, NY, USA, 11 pages. https://doi.org/10.1145/3696410.3714809"
 ---
@@ -33,7 +33,7 @@ Miresga uses three components to complete these three tasks: the programmable sw
 
 ![](../images/Miresga_Arch.jpg)
 
-For more details, please refer to [our paper](https://sirius-sxy.github.io/files/paper4.pdf) and the [GitHub repository](https://github.com/THUNAME/Miresga). To run Miresga, please follow the instructions in the GitHub repository. If you have any questions, feel free to open an issue in the repository or send us an email. We will address them as soon as possible.
+For more details, please refer to [our paper](https://dl.acm.org/doi/pdf/10.1145/3696410.3714809) and the [GitHub repository](https://github.com/THUNAME/Miresga). To run Miresga, please follow the instructions in the GitHub repository. If you have any questions, feel free to open an issue in the repository or send us an email. We will address them as soon as possible.
 
 # III. Third-Party Dependencies
 
