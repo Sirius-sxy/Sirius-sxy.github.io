@@ -2,12 +2,12 @@
 title: "Lightning in the Dark: Uncovering Global IPv6 Router Interfaces and Their Security Implications"
 collection: publications
 category: conferences
-permalink: /publication/paper6
+permalink: /publication/Helixir
 date: 2025-9-22
 venue: 'The 33rd IEEE International Conference on Network Protocols'
 published: true
 paperurl: 'https://ieeexplore.ieee.org/abstract/document/11192454'
-citation: "J. Zhou, Y. Liu, L. He, X. Shi, Y. Yang, C. Wei, D. Cheng, W. Gong, & J. Yang. 2025. Lightning in the Dark: Uncovering Global IPv6 Router Interfaces and Their Security Implications. In Proceedings of the 33rd IEEE International Conference on Network Protocols (ICNP 2025). Seoul, South Korea."
+citation: "Jiasheng Zhou, Yingliu Liu, Lin He, Xiaoyi Shi, Yifan Yang, Chentian Wei, Daguo Cheng, Wenwen Gong, and Jiahai Yang. 2025. Lightning in the Dark: Uncovering Global IPv6 Router Interfaces and Their Security Implications. In Proceedings of the 33rd IEEE International Conference on Network Protocols (ICNP 2025). Seoul, South Korea."
 ---
 # Abstract
 

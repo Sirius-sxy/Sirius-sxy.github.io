@@ -2,7 +2,7 @@
 title: "Miresga: Accelerating Layer-7 Load Balancing with Programmable Switches"
 collection: publications
 category: conferences
-permalink: /publication/paper4
+permalink: /publication/Miresga
 date: 2025-4-22
 venue: 'Proceedings of the ACM Web Conference 2025'
 #slidesurl: #'http://academicpages.github.io/files/slides1.pdf'

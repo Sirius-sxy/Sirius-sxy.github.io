@@ -1,5 +1,5 @@
 ---
-title: "1st CCF AI-Computing Network Challenge"
+title: "The Second Prize of the 1st CCF AI-Computing Network Challenge"
 collection: awards
 permalink: /awards/CCF-ACNC
 date: 2025-9-13
