@@ -7,7 +7,7 @@ date: 2025-12-6
 venue: 'Elsevier Computer Networks'
 published: true
 paperurl: 'https://www.sciencedirect.com/science/article/abs/pii/S1389128625008874'
-citation: "Jiasheng Zhou, Lin He, Xiaoyi Shi, Yifan Yang, Jinlong E, Ying Liu. 2025. SwitchTAD: Defending Deep Learning-Based Website Fingerprinting Attacks with Programmable Switches. In Elsevier Computer Networks. ISSN 1389-1286,"
+citation: "Jiasheng Zhou, Lin He, Xiaoyi Shi, Yifan Yang, Jinlong E, Ying Liu, SwitchTAD: Defending deep learning-based website fingerprinting attacks with programmable switches, Computer Networks, Volume 275, 2026, 111921, ISSN 1389-1286, https://doi.org/10.1016/j.comnet.2025.111921."
 ---
 # Abstract
 
