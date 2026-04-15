@@ -12,6 +12,8 @@ repogiturl: 'https://github.com/THUNAME/SubRecon'
 repolicense: 'Apache-2.0'
 citation: "Jiasheng Zhou, Ying Liu, Lin He, Yifan Yang, Xiaoyi Shi, Daguo Cheng, Chentian Wei, Yun Fan, and Guanglei Song. 2025. SubRecon: Efficient Internet‑wide IPv6 Subnet Discovery and Its Applications. In Proceedings of the 33rd IEEE International Conference on Network Protocols (ICNP 2025). Seoul, South Korea."
 ccf: "B"
+thcpl: "A"
+core: "B"
 apa: "Zhou, J., Liu, Y., He, L., Yang, Y., Shi, X., Cheng, D., Wei, C., Fan, Y., & Song, G. (2025). SubRecon: Efficient Internet-wide IPv6 Subnet Discovery and Its Applications. In Proceedings of the 33rd IEEE International Conference on Network Protocols (ICNP 2025). Seoul, South Korea."
 bibtex: |
   @inproceedings{zhou2025subrecon,

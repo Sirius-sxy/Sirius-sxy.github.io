@@ -12,6 +12,8 @@ repolicense: 'GPL3'
 paperurl: 'https://ieeexplore.ieee.org/abstract/document/11192454'
 citation: "Jiasheng Zhou, Yingliu Liu, Lin He, Xiaoyi Shi, Yifan Yang, Chentian Wei, Daguo Cheng, Wenwen Gong, and Jiahai Yang. 2025. Lightning in the Dark: Uncovering Global IPv6 Router Interfaces and Their Security Implications. In Proceedings of the 33rd IEEE International Conference on Network Protocols (ICNP 2025). Seoul, South Korea."
 ccf: "B"
+thcpl: "A"
+core: "B"
 apa: "Zhou, J., Liu, Y., He, L., Shi, X., Yang, Y., Wei, C., Cheng, D., Gong, W., & Yang, J. (2025). Lightning in the Dark: Uncovering Global IPv6 Router Interfaces and Their Security Implications. In Proceedings of the 33rd IEEE International Conference on Network Protocols (ICNP 2025). Seoul, South Korea."
 bibtex: |
   @inproceedings{zhou2025lightning,
