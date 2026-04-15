@@ -27,19 +27,6 @@
     {% endif %}
 
     <h2 class="archive__item-title" itemprop="headline">
-      {% if post.ccf %}
-        {% assign ccf_level = post.ccf | remove: "CCF" | remove: "-" | strip %}
-        <span class="pub-badge badge-{{ ccf_level }}">CCF-{{ ccf_level }}</span>
-      {% endif %}
-      {% if post.thcpl %}
-        {% assign thcpl_level = post.thcpl | remove: "THCPL" | remove: "-" | strip %}
-        <span class="pub-badge badge-{{ thcpl_level }}">THCPL-{{ thcpl_level }}</span>
-      {% endif %}
-      {% if post.core %}
-        {% assign core_level = post.core | remove: "CORE" | remove: "-" | strip %}
-        {% assign core_class = core_level | replace: "*", "star" %}
-        <span class="pub-badge badge-{{ core_class }}">CORE-{{ core_level }}</span>
-      {% endif %}
       {% if post.link %}
         <a href="{{ post.link }}">{{ title }}</a> <a href="{{ base_path }}{{ post.url }}" rel="permalink"><i class="fa fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
       {% else %}
@@ -54,11 +41,31 @@
         {% if post.collection == 'teaching' %}
           <p> {{ post.type }}, <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }} </p>
         {% elsif post.collection == 'publications' %}
-          {% if post.published %}
-            <p style="font-size: smaller;font-family: 'Times New Roman', Times, serif"><em>Published in {{ post.venue }}, {{ post.date | default: "1900-01-01" | date: "%Y" }}</em> </p>
-          {% else %}
-            <p style="font-size: smaller;font-family: 'Times New Roman', Times, serif"><em>To be Published in {{ post.venue }}, {{ post.date | default: "1900-01-01" | date: "%Y" }}</em> </p>
-          {% endif %}
+          <div style="margin-bottom: 5px;">
+            {% if post.published %}
+              <p style="font-size: smaller;font-family: 'Times New Roman', Times, serif; margin: 0; padding: 0;"><em>Published in {{ post.venue }}, {{ post.date | default: "1900-01-01" | date: "%Y" }}</em> </p>
+            {% else %}
+              <p style="font-size: smaller;font-family: 'Times New Roman', Times, serif; margin: 0; padding: 0;"><em>To be Published in {{ post.venue }}, {{ post.date | default: "1900-01-01" | date: "%Y" }}</em> </p>
+            {% endif %}
+          </div>
+          <div style="margin-bottom: 10px;">
+            {% if post.ccf %}
+              {% assign ccf_level = post.ccf | remove: "CCF" | remove: "-" | strip %}
+              <span class="pub-badge badge-{{ ccf_level }}">CCF-{{ ccf_level }}</span>
+            {% endif %}
+            {% if post.thcpl %}
+              {% assign thcpl_level = post.thcpl | remove: "THCPL" | remove: "-" | strip %}
+              <span class="pub-badge badge-{{ thcpl_level }}">THCPL-{{ thcpl_level }}</span>
+            {% endif %}
+            {% if post.core %}
+              {% assign core_level = post.core | remove: "CORE" | remove: "-" | strip %}
+              {% assign core_class = core_level | replace: "*", "star" %}
+              <span class="pub-badge badge-{{ core_class }}">CORE-{{ core_level }}</span>
+            {% endif %}
+            {% if post.poster_demo %}
+              <span class="pub-badge">Poster/Demo</span>
+            {% endif %}
+          </div>
         {% elsif post.date %}
          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].date_label | default: "Published:" }}</strong> <time datetime="{{ post.date | default: "1900-01-01" | date_to_xmlschema }}">{{ post.date | default: "1900-01-01" | date: "%B %d, %Y" }}</time></p>
         {% endif %}

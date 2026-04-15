@@ -10,6 +10,7 @@ opensource: true
 published: true
 paperurl: 'https://sirius-sxy.github.io/files/L7LB_poster.pdf'
 repogiturl: 'https://github.com/Tsinghua-NSLab/L7LB'
+poster_demo: true
 citation: 'Xiaoyi Shi, Yifan Li, Chengjun Jia, Xiaohe Hu and Jun Li, "L7LB: High Performance Layer-7 Load Balancing on Heterogeneous Programmable Platforms," IEEE INFOCOM 2023 - IEEE Conference on Computer Communications Workshops (INFOCOM WKSHPS), Hoboken, NJ, USA, 2023, pp. 1-2, doi: 10.1109/INFOCOMWKSHPS57453.2023.10225882.'
 apa: "Shi, X., Li, Y., Jia, C., Hu, X., & Li, J. (2023). L7LB: High Performance Layer-7 Load Balancing on Heterogeneous Programmable Platforms. In IEEE INFOCOM 2023 - IEEE Conference on Computer Communications Workshops (INFOCOM WKSHPS) (pp. 1-2). IEEE. https://doi.org/10.1109/INFOCOMWKSHPS57453.2023.10225882"
 bibtex: |
