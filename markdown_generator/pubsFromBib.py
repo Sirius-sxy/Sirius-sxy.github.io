@@ -137,6 +137,19 @@ for pubsource in publist:
 
             md += "\ncitation: '" + html_escape(citation) + "'"
 
+            if "ccf" in b.keys():
+                md += "\nccf: '" + html_escape(b["ccf"]) + "'"
+
+            bibtex_str = "@" + bibdata.entries[bib_id].type + "{" + bib_id + ",\n"
+            for field_name, field_value in b.items():
+                bibtex_str += "  " + field_name + " = {" + field_value + "},\n"
+            bibtex_str += "}"
+
+            md += "\nbibtex: |-\n"
+            for line in bibtex_str.split("\n"):
+                if line.strip():
+                    md += "  " + line + "\n"
+
             md += "\n---"
 
             

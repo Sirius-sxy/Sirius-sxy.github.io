@@ -88,6 +88,15 @@ for row, item in publications.iterrows():
     
     md += "\ncitation: '" + html_escape(item.citation) + "'"
     
+    if "ccf" in item.index and not pd.isna(item.ccf) and len(str(item.ccf)) > 0:
+        md += "\nccf: '" + html_escape(str(item.ccf)) + "'"
+        
+    if "bibtex" in item.index and not pd.isna(item.bibtex) and len(str(item.bibtex)) > 5:
+        md += "\nbibtex: |-\n"
+        for line in str(item.bibtex).split("\n"):
+            if line.strip():
+                md += "  " + line + "\n"
+    
     md += "\n---"
     
     ## Markdown description for individual page

@@ -39,3 +39,69 @@
 @import "vendor/font-awesome/brands";
 @import "vendor/magnific-popup/magnific-popup";
 @import "print";
+/* Custom CSS for Publications */
+.ccf-badge {
+  display: inline-block;
+  padding: 0.15em 0.4em;
+  font-size: 0.65em;
+  font-weight: bold;
+  color: #fff;
+  background-color: #d9534f;
+  border-radius: 4px;
+  vertical-align: middle;
+  margin-right: 8px;
+  margin-bottom: 2px;
+}
+
+.pub-btn-group {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.pub-btn-group .btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4em 0.8em;
+  font-size: 0.75em;
+  margin-right: 5px;
+  background-color: #f8f9fa;
+  color: #333 !important;
+  border: 1px solid #ddd !important;
+  transition: all 0.2s ease-in-out;
+}
+
+.pub-btn-group .btn:hover {
+  background-color: #e2e6ea;
+  border-color: #dae0e5 !important;
+  text-decoration: none;
+}
+
+.pub-btn-group .btn i {
+  margin-right: 5px;
+}
+
+.citation-box {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 6px;
+  font-size: 0.85em;
+  border: 1px solid #e9ecef;
+  margin-top: 10px;
+  display: none;
+}
+
+.citation-box pre {
+  background: #272822; /* Monokai dark background */
+  color: #f8f8f2;
+  padding: 10px;
+  border-radius: 4px;
+  overflow-x: auto;
+  margin: 5px 0 0 0;
+  font-size: 0.9em;
+}
+
+.citation-box strong {
+  color: #495057;
+  display: block;
+  margin-bottom: 5px;
+}

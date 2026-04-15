@@ -27,6 +27,9 @@
     {% endif %}
 
     <h2 class="archive__item-title" itemprop="headline">
+      {% if post.ccf %}
+        <span class="ccf-badge">CCF-{{ post.ccf | remove: "CCF" | remove: "-" | strip }}</span>
+      {% endif %}
       {% if post.link %}
         <a href="{{ post.link }}">{{ title }}</a> <a href="{{ base_path }}{{ post.url }}" rel="permalink"><i class="fa fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
       {% else %}
@@ -58,30 +61,43 @@
     {% endif %}
     -->
 
-    {% if post.citation and post.paperurl and post.slidesurl and post.reviewsurl and post.posterurl %}
-      <p style="font-size: smaller;"><span style="font-family:'Times New Roman', Times, serif"><em>Recommended citation:</em> {{ post.citation }}<br /></span><a href="{{ post.paperurl }}">Download Paper</a> | <a href="{{ post.slidesurl }}">Download Slides</a> | <a href="{{post.posterurl}}">Download Poster</a> | <a href="{{post.reviewsurl}}">View Reviews</a></p>
-    {% elsif post.citation and post.paperurl and post.slidesurl and post.reviewsurl %}
-      <p style="font-size: smaller;"><span style="font-family:'Times New Roman', Times, serif"><em>Recommended citation:</em> {{ post.citation }}<br /></span><a href="{{ post.paperurl }}">Download Paper</a> | <a href="{{ post.slidesurl }}">Download Slides</a> | <a href="{{post.reviewsurl}}">View Reviews</a></p>
-    {% elsif post.citation and post.paperurl and post.slidesurl and post.posterurl %}
-      <p style="font-size: smaller;"><span style="font-family:'Times New Roman', Times, serif"><em>Recommended citation:</em> {{ post.citation }}<br /></span><a href="{{ post.paperurl }}">Download Paper</a> | <a href="{{ post.slidesurl }}">Download Slides</a> | <a href="{{post.posterurl}}">Download Poster</a></p>
-    {% elsif post.citation and post.paperurl and post.posterurl and post.reviewsurl %}
-      <p style="font-size: smaller;"><span style="font-family:'Times New Roman', Times, serif"><em>Recommended citation:</em> {{ post.citation }}<br /></span><a href="{{ post.paperurl }}">Download Paper</a> |  <a href="{{post.posterurl}}">Download Poster</a> | <a href="{{post.reviewsurl}}">View Reviews</a></p>
-    {% elsif post.citation and post.paperurl and post.slidesurl %}
-      <p style="font-size: smaller;"><span style="font-family:'Times New Roman', Times, serif"><em>Recommended citation:</em> {{ post.citation }}<br /></span><a href="{{ post.paperurl }}">Download Paper</a> | <a href="{{ post.slidesurl }}">Download Slides</a></p>
-    {% elsif post.citation and post.paperurl and post.reviewsurl %}
-      <p style="font-size: smaller;"><span style="font-family:'Times New Roman', Times, serif"><em>Recommended citation:</em> {{ post.citation }}<br /></span><a href="{{ post.paperurl }}">Download Paper</a> | <a href="{{post.reviewsurl}}">View Reviews</a></p>
-    {% elsif post.citation and post.paperurl and post.posterurl %}
-      <p style="font-size: smaller;"><span style="font-family:'Times New Roman', Times, serif"><em>Recommended citation:</em> {{ post.citation }}<br /></span><a href="{{ post.paperurl }}">Download Paper</a> | <a href="{{post.posterurl}}">Download Poster</a></p>
-    {% elsif post.citation and post.paperurl %}
-      <p style="font-size: smaller;"><span style="font-family:'Times New Roman', Times, serif"><em>Recommended citation:</em> {{ post.citation }}<br /></span><a href="{{ post.paperurl }}">Download Paper</a></p>
-    {% elsif post.citation and post.reviewsurl %}
-      <p style="font-size: smaller;"><span style="font-family:'Times New Roman', Times, serif"><em>Recommended citation:</em> {{ post.citation }}<br /></span><a href="{{post.reviewsurl}}">View Reviews</a></p>
-    {% elsif post.citation %}
-      <p style="font-size: smaller;"><span style="font-family:'Times New Roman', Times, serif"><em>Recommended citation:</em> {{ post.citation }}<br /></span></p>
-    {% elsif post.paperurl %}
-      <p style="font-size: smaller;"><a href=" {{ post.paperurl }} ">Download Paper</a></p>
-    {% elsif post.reviewsurl %}
-      <p style="font-size: smaller;"><a href=" {{ post.reviewsurl }} ">View Reviews</a></p>
+    <div class="pub-btn-group">
+      {% if post.paperurl %}
+        <a href="{{ post.paperurl }}" class="btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-file-pdf"></i> Download PDF</a>
+      {% endif %}
+      {% if post.codeurl or post.repogiturl %}
+        <a href="{{ post.codeurl | default: post.repogiturl }}" class="btn" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Code {% if post.repolicense %}({{ post.repolicense }}){% endif %}</a>
+      {% endif %}
+      {% if post.slidesurl %}
+        <a href="{{ post.slidesurl }}" class="btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-file-powerpoint"></i> Slides</a>
+      {% endif %}
+      {% if post.posterurl %}
+        <a href="{{ post.posterurl }}" class="btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-image"></i> Poster</a>
+      {% endif %}
+      {% if post.reviewsurl %}
+        <a href="{{ post.reviewsurl }}" class="btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-comments"></i> Reviews</a>
+      {% endif %}
+      {% if post.citation or post.bibtex or post.apa %}
+        <button class="btn citation-toggle" onclick="var box = this.parentElement.nextElementSibling; box.style.display = box.style.display === 'none' ? 'block' : 'none';"><i class="fas fa-quote-right"></i> Cite</button>
+      {% endif %}
+    </div>
+
+    {% if post.citation or post.bibtex or post.apa %}
+    <div class="citation-box" style="display: none;">
+      {% if post.citation or post.apa %}
+      <div class="citation-content">
+        <strong>APA:</strong>
+        <p style="margin: 5px 0;">{{ post.apa | default: post.citation }}</p>
+      </div>
+      {% endif %}
+      {% if post.bibtex %}
+      <div class="citation-content" style="margin-top: {% if post.citation or post.apa %}15px{% else %}0{% endif %};">
+        <strong>BibTeX:</strong>
+        <pre><code>{{ post.bibtex }}</code></pre>
+      </div>
+      {% endif %}
+    </div>
     {% endif %}
+
   </article>
 </div>

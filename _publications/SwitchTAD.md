@@ -8,6 +8,19 @@ venue: 'Elsevier Computer Networks'
 published: true
 paperurl: 'https://www.sciencedirect.com/science/article/abs/pii/S1389128625008874'
 citation: "Jiasheng Zhou, Lin He, Xiaoyi Shi, Yifan Yang, Jinlong E, Ying Liu, SwitchTAD: Defending deep learning-based website fingerprinting attacks with programmable switches, Computer Networks, Volume 275, 2026, 111921, ISSN 1389-1286, https://doi.org/10.1016/j.comnet.2025.111921."
+ccf: "B"
+apa: "Zhou, J., He, L., Shi, X., Yang, Y., E, J., & Liu, Y. (2026). SwitchTAD: Defending deep learning-based website fingerprinting attacks with programmable switches. Computer Networks, 275, 111921. https://doi.org/10.1016/j.comnet.2025.111921"
+bibtex: |
+  @article{zhou2026switchtad,
+    title={SwitchTAD: Defending deep learning-based website fingerprinting attacks with programmable switches},
+    author={Zhou, Jiasheng and He, Lin and Shi, Xiaoyi and Yang, Yifan and E, Jinlong and Liu, Ying},
+    journal={Computer Networks},
+    volume={275},
+    pages={111921},
+    year={2026},
+    publisher={Elsevier},
+    doi={10.1016/j.comnet.2025.111921}
+  }
 ---
 # Abstract
 

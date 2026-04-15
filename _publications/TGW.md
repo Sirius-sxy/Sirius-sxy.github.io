@@ -8,6 +8,16 @@ date: 2025-7-7
 venue: '2025 USENIX Annual Technical Conference'
 paperurl: 'https://www.usenix.org/system/files/atc25-yang-yifan.pdf'
 citation: "Yifan Yang, Lin He, Jiasheng Zhou, Xiaoyi Shi, Yichi Xu, Shicheng Wang, Jinlong E, Ying Liu, Junwei Zhang, Zhuang Yuan, and Hengyang Xu, TGW: Operating an Efficient and Resilient Cloud Gateway at Scale. In Proceedings of the 2025 USENIX Annual Technical Conference (ATC '25), Boston, MA, USA, July 2025."
+ccf: "A"
+apa: "Yang, Y., He, L., Zhou, J., Shi, X., Xu, Y., Wang, S., E, J., Liu, Y., Zhang, J., Yuan, Z., & Xu, H. (2025). TGW: Operating an Efficient and Resilient Cloud Gateway at Scale. In Proceedings of the 2025 USENIX Annual Technical Conference (ATC '25). Boston, MA, USA."
+bibtex: |
+  @inproceedings{yang2025tgw,
+    title={TGW: Operating an Efficient and Resilient Cloud Gateway at Scale},
+    author={Yang, Yifan and He, Lin and Zhou, Jiasheng and Shi, Xiaoyi and Xu, Yichi and Wang, Shicheng and E, Jinlong and Liu, Ying and Zhang, Junwei and Yuan, Zhuang and Xu, Hengyang},
+    booktitle={Proceedings of the 2025 USENIX Annual Technical Conference (ATC '25)},
+    year={2025},
+    address={Boston, MA, USA}
+  }
 ---
 Cooperation with Tencent.
 

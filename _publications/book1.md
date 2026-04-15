@@ -8,6 +8,13 @@ published: true
 venue: '人民邮电出版社 (POSTS & TELECOM PRESS)'
 #slidesurl: #'http://academicpages.github.io/files/slides1.pdf'
 #paperurl: 'https://ieeexplore.ieee.org/abstract/document/10225882'
+apa: "AI群星闪耀时. (2024). 人民邮电出版社."
+bibtex: |
+  @book{ai2024,
+    title={AI群星闪耀时},
+    year={2024},
+    publisher={人民邮电出版社}
+  }
 ---
 
 I'm responsible for writing the chapter "十、超越时代的思考者：艾伦·图灵".

@@ -8,6 +8,16 @@ published: true
 paperurl: 'https://ieeexplore.ieee.org/abstract/document/11044705'
 venue: 'IEEE INFOCOM 2025'
 citation: 'Jiasheng Zhou, Lin He, Yifan Yang, Xiaoyi Shi, Daguo Cheng, Jinlong E, Ying Liu, and Dong Zhang. 2025. "6Map: Enabling fast active IPv6 address discovery with programmable switches". In Proceedings of the 44th IEEE Conference on Computer Communications (INFOCOM). London, United Kingdom.'
+ccf: "A"
+apa: "Zhou, J., He, L., Yang, Y., Shi, X., Cheng, D., E, J., Liu, Y., & Zhang, D. (2025). 6Map: Enabling fast active IPv6 address discovery with programmable switches. In Proceedings of the 44th IEEE Conference on Computer Communications (INFOCOM). London, United Kingdom."
+bibtex: |
+  @inproceedings{zhou20256map,
+    title={6Map: Enabling fast active IPv6 address discovery with programmable switches},
+    author={Zhou, Jiasheng and He, Lin and Yang, Yifan and Shi, Xiaoyi and Cheng, Daguo and E, Jinlong and Liu, Ying and Zhang, Dong},
+    booktitle={Proceedings of the 44th IEEE Conference on Computer Communications (INFOCOM)},
+    year={2025},
+    address={London, United Kingdom}
+  }
 ---
 # Abstract
 

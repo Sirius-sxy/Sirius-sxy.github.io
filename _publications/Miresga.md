@@ -16,6 +16,17 @@ paperurl: 'https://dl.acm.org/doi/pdf/10.1145/3696410.3714809'
 reviewsurl: 'https://openreview.net/forum?id=iQEcCo2Mn8'
 posterurl: 'https://github.com/Sirius-sxy/Miresga-poster/blob/main/poster.pdf'
 citation: "Xiaoyi Shi, Lin He, Jiasheng Zhou, Yifan Yang, and Ying Liu. 2025. Miresga: Accelerating Layer-7 Load Balancing with Programmable Switches. In Proceedings of the ACM Web Conference 2025 (WWW '25), April 28-May 2, 2025, Sydney, NSW, Australia. ACM, New York, NY, USA, 11 pages. https://doi.org/10.1145/3696410.3714809"
+ccf: "A"
+apa: "Shi, X., He, L., Zhou, J., Yang, Y., & Liu, Y. (2025). Miresga: Accelerating Layer-7 Load Balancing with Programmable Switches. In Proceedings of the ACM Web Conference 2025 (WWW '25). ACM. https://doi.org/10.1145/3696410.3714809"
+bibtex: |
+  @inproceedings{shi2025miresga,
+    title={Miresga: Accelerating Layer-7 Load Balancing with Programmable Switches},
+    author={Shi, Xiaoyi and He, Lin and Zhou, Jiasheng and Yang, Yifan and Liu, Ying},
+    booktitle={Proceedings of the ACM Web Conference 2025},
+    year={2025},
+    publisher={ACM},
+    doi={10.1145/3696410.3714809}
+  }
 ---
 # I. Abstract
 

@@ -26,7 +26,14 @@ layout: default
     <div class="page__inner-wrap">
       {% unless page.header.overlay_color or page.header.overlay_image %}
         <header>
-          {% if page.title %}<h1 class="page__title" itemprop="headline">{{ page.title | markdownify | remove: "<p>" | remove: "</p>" }}</h1>{% endif %}
+          {% if page.title %}
+            <h1 class="page__title" itemprop="headline">
+              {% if page.ccf %}
+                <span class="ccf-badge">CCF-{{ page.ccf | remove: "CCF" | remove: "-" | strip }}</span>
+              {% endif %}
+              {{ page.title | markdownify | remove: "<p>" | remove: "</p>" }}
+            </h1>
+          {% endif %}
           {% if page.read_time %}
             <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> {% include read-time.html %}</p>
           {% endif %}
@@ -51,49 +58,67 @@ layout: default
       <section class="page__content" itemprop="text">
         <p style="font-family: 'Times New Roman', Times, serif;">{{ content }}</p>
 
-        {% if page.citation and page.paperurl and page.slidesurl and page.reviewsurl and page.posterurl %}
-          <p><span><em>Recommended citation:</em> {{ page.citation }}<br /></span><a href="{{ page.paperurl }}">Download Paper</a> | <a href="{{ page.slidesurl }}">Download Slides</a> | <a href="{{ page.posterurl }}">Download Poster</a> | <a href="{{ page.reviewsurl }}">View Reviews</a></p>
-        {% elsif page.citation and page.paperurl and page.slidesurl and page.reviewsurl %}
-          <p><span><em>Recommended citation:</em> {{ page.citation }}<br /></span><a href="{{ page.paperurl }}">Download Paper</a> | <a href="{{ page.slidesurl }}">Download Slides</a> | <a href="{{ page.reviewsurl }}">View Reviews</a></p>
-        {% elsif page.citation and page.paperurl and page.slidesurl and page.posterurl %}
-          <p><span><em>Recommended citation:</em> {{ page.citation }}<br /></span><a href="{{ page.paperurl }}">Download Paper</a> | <a href="{{ page.slidesurl }}">Download Slides</a> | <a href="{{ page.posterurl }}">Download Poster</a></p>
-        {% elsif page.citation and page.paperurl and page.posterurl and page.reviewsurl %}
-          <p><span><em>Recommended citation:</em> {{ page.citation }}<br /></span><a href="{{ page.paperurl }}">Download Paper</a> | <a href="{{ page.posterurl }}">Download Poster</a> | <a href="{{ page.reviewsurl }}">View Reviews</a></p>
-        {% elsif page.citation and page.paperurl and page.slidesurl %}
-          <p><span><em>Recommended citation:</em> {{ page.citation }}<br /></span><a href="{{ page.paperurl }}">Download Paper</a> | <a href="{{ page.slidesurl }}">Download Slides</a></p>
-        {% elsif page.citation and page.paperurl and page.reviewsurl %}
-          <p><span><em>Recommended citation:</em> {{ page.citation }}<br /></span><a href="{{ page.paperurl }}">Download Paper</a> | <a href="{{ page.reviewsurl }}">View Reviews</a></p>
-        {% elsif page.citation and page.paperurl and page.posterurl %}
-          <p><span><em>Recommended citation:</em> {{ page.citation }}<br /></span><a href="{{ page.paperurl }}">Download Paper</a> | <a href="{{ page.posterurl }}">Download Poster</a></p>
-        {% elsif page.citation and page.paperurl %}
-          <p><span><em>Recommended citation:</em> {{ page.citation }}<br /></span><a href="{{ page.paperurl }}">Download Paper</a></p>
-        {% elsif page.citation and page.reviewsurl %}
-          <p><span><em>Recommended citation:</em> {{ page.citation }}<br /></span><a href="{{ page.reviewsurl }}">View Reviews</a></p>
-        {% elsif page.citation %}
-          <p><span><em>Recommended citation:</em> {{ page.citation }}<br /></span></p>
-        {% elsif page.paperurl %}
-          <p><a href="{{ page.paperurl }}">Download Paper</a></p>
-        {% elsif page.reviewsurl %}
-          <p><a href="{{ page.reviewsurl }}">View Reviews</a></p>
+        <div class="pub-btn-group">
+          {% if page.paperurl %}
+            <a href="{{ page.paperurl }}" class="btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-file-pdf"></i> Download PDF</a>
+          {% endif %}
+          {% if page.codeurl or page.repogiturl %}
+            <a href="{{ page.codeurl | default: page.repogiturl }}" class="btn" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Code {% if page.repolicense %}({{ page.repolicense }}){% endif %}</a>
+          {% endif %}
+          {% if page.repozenodourl %}
+            <a href="{{ page.repozenodourl }}" class="btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-database"></i> Zenodo</a>
+          {% endif %}
+          {% if page.repodoiurl %}
+            <a href="{{ page.repodoiurl }}" class="btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-link"></i> DOI</a>
+          {% endif %}
+          {% if page.slidesurl %}
+            <a href="{{ page.slidesurl }}" class="btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-file-powerpoint"></i> Slides</a>
+          {% endif %}
+          {% if page.posterurl %}
+            <a href="{{ page.posterurl }}" class="btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-image"></i> Poster</a>
+          {% endif %}
+          {% if page.reviewsurl %}
+            <a href="{{ page.reviewsurl }}" class="btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-comments"></i> Reviews</a>
+          {% endif %}
+          {% if page.citation or page.bibtex or page.apa %}
+            <button class="btn citation-toggle" onclick="var box = this.parentElement.nextElementSibling; box.style.display = box.style.display === 'none' ? 'block' : 'none';"><i class="fas fa-quote-right"></i> Cite</button>
+          {% endif %}
+        </div>
+
+        {% if page.citation or page.bibtex or page.apa %}
+        <div class="citation-box" style="display: none;">
+          {% if page.citation or page.apa %}
+          <div class="citation-content">
+            <strong>APA:</strong>
+            <p style="margin: 5px 0;">{{ page.apa | default: page.citation }}</p>
+          </div>
+          {% endif %}
+          {% if page.bibtex %}
+          <div class="citation-content" style="margin-top: {% if page.citation or page.apa %}15px{% else %}0{% endif %};">
+            <strong>BibTeX:</strong>
+            <pre><code>{{ page.bibtex }}</code></pre>
+          </div>
+          {% endif %}
+        </div>
         {% endif %}
 
-        {% if page.opensource %}
-          <p>Codes are available in:</p>
-          {% if page.repogiturl and page.repozenodourl and page.repodoiurl %}
-            <p><a href="{{ page.repogiturl }}">Github</a> | <a href="{{ page.repozenodourl }}">Zenodo</a> | <a href="{{ page.repodoiurl }}">DOI</a></p>
-          {% elsif page.repogiturl and page.repozenodourl %}
-            <p><a href="{{ page.repogiturl }}">Github</a> | <a href="{{ page.repozenodourl }}">Zenodo</a></p>
-          {% elsif page.repozenodourl and page.repodoiurl %}
-            <p><a href="{{ page.repozenodourl }}">Zenodo</a> | <a href="{{ page.repodoiurl }}">DOI</a></p>
-          {% elsif page.repogiturl %}
-            <p><a href="{{ page.repogiturl }}">Github</a></p>
-          {% elsif page.repozenodourl %}
-            <p><a href="{{ page.repozenodourl }}">Zenodo</a></p>
-          {% endif %}
-          
-          {% if page.repolicense == 'AGPL3' %}
-            <p> Kindly noting that this repo is under <a href="https://www.gnu.org/licenses/agpl-3.0.html">GNU Affero Public License v3</a>. Please ensure compliance with the terms of the license when using this repository.</p>
-          {% endif %}
+        {% if page.opensource and page.repolicense %}
+          <p style="font-size: 0.85em; color: #666;">
+            <i class="fas fa-balance-scale"></i> 
+            Kindly noting that this repo is under 
+            {% if page.repolicense == 'AGPL3' %}
+              <a href="https://www.gnu.org/licenses/agpl-3.0.html"><strong>GNU Affero Public License v3</strong></a>
+            {% elsif page.repolicense == 'GPL3' %}
+              <a href="https://www.gnu.org/licenses/gpl-3.0.html"><strong>GNU General Public License v3</strong></a>
+            {% elsif page.repolicense == 'MIT' %}
+              <a href="https://opensource.org/licenses/MIT"><strong>MIT License</strong></a>
+            {% elsif page.repolicense == 'Apache-2.0' %}
+              <a href="https://opensource.org/licenses/Apache-2.0"><strong>Apache License 2.0</strong></a>
+            {% else %}
+              <strong>{{ page.repolicense }}</strong>
+            {% endif %}
+            . Please ensure compliance with the terms of the license when using this repository.
+          </p>
         {% endif %}
 
         {% if page.link %}
