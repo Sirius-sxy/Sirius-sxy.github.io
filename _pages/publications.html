@@ -12,11 +12,30 @@ author_profile: true
 {% include base_path %}
 
 <!-- New style rendering if publication categories are defined -->
+{% assign ccf_levels = "A,B,C" | split: "," %}
+
 {% if site.publication_category %}
   {% for category in site.publication_category  %}
     {% assign title_shown = false %}
+    
+    {% for level in ccf_levels %}
+      {% for post in site.publications reversed %}
+        {% if post.category != category[0] or post.ccf != level %}
+          {% continue %}
+        {% endif %}
+        {% unless title_shown %}
+          <h2>{{ category[1].title }}</h2><hr />
+          {% assign title_shown = true %}
+        {% endunless %}
+        {% include archive-single.html %}
+      {% endfor %}
+    {% endfor %}
+
     {% for post in site.publications reversed %}
       {% if post.category != category[0] %}
+        {% continue %}
+      {% endif %}
+      {% if ccf_levels contains post.ccf %}
         {% continue %}
       {% endif %}
       {% unless title_shown %}
@@ -27,8 +46,18 @@ author_profile: true
     {% endfor %}
   {% endfor %}
 {% else %}
+  {% for level in ccf_levels %}
+    {% for post in site.publications reversed %}
+      {% if post.ccf == level %}
+        {% include archive-single.html %}
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+  
   {% for post in site.publications reversed %}
-    {% include archive-single.html %}
+    {% unless ccf_levels contains post.ccf %}
+      {% include archive-single.html %}
+    {% endunless %}
   {% endfor %}
 {% endif %}
 

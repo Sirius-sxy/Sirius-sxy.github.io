@@ -46,12 +46,15 @@
   font-size: 0.65em;
   font-weight: bold;
   color: #fff;
-  background-color: #d9534f;
   border-radius: 4px;
   vertical-align: middle;
   margin-right: 8px;
   margin-bottom: 2px;
+  background-color: #6c757d; /* Default gray */
 }
+.ccf-badge-A { background-color: #d9534f; } /* Red for CCF-A */
+.ccf-badge-B { background-color: #f0ad4e; } /* Orange for CCF-B */
+.ccf-badge-C { background-color: #5cb85c; } /* Green for CCF-C */
 
 .pub-btn-group {
   margin-top: 10px;

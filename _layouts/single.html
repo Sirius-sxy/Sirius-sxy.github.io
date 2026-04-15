@@ -29,7 +29,8 @@ layout: default
           {% if page.title %}
             <h1 class="page__title" itemprop="headline">
               {% if page.ccf %}
-                <span class="ccf-badge">CCF-{{ page.ccf | remove: "CCF" | remove: "-" | strip }}</span>
+                {% assign ccf_level = page.ccf | remove: "CCF" | remove: "-" | strip %}
+                <span class="ccf-badge ccf-badge-{{ ccf_level }}">CCF-{{ ccf_level }}</span>
               {% endif %}
               {{ page.title | markdownify | remove: "<p>" | remove: "</p>" }}
             </h1>
