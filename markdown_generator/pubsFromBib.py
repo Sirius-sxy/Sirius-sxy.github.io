@@ -139,6 +139,12 @@ for pubsource in publist:
 
             if "ccf" in b.keys():
                 md += "\nccf: '" + html_escape(b["ccf"]) + "'"
+            
+            if "thcpl" in b.keys():
+                md += "\nthcpl: '" + html_escape(b["thcpl"]) + "'"
+                
+            if "core" in b.keys():
+                md += "\ncore: '" + html_escape(b["core"]) + "'"
 
             bibtex_str = "@" + bibdata.entries[bib_id].type + "{" + bib_id + ",\n"
             for field_name, field_value in b.items():

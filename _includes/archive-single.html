@@ -29,7 +29,16 @@
     <h2 class="archive__item-title" itemprop="headline">
       {% if post.ccf %}
         {% assign ccf_level = post.ccf | remove: "CCF" | remove: "-" | strip %}
-        <span class="ccf-badge ccf-badge-{{ ccf_level }}">CCF-{{ ccf_level }}</span>
+        <span class="pub-badge badge-{{ ccf_level }}">CCF-{{ ccf_level }}</span>
+      {% endif %}
+      {% if post.thcpl %}
+        {% assign thcpl_level = post.thcpl | remove: "THCPL" | remove: "-" | strip %}
+        <span class="pub-badge badge-{{ thcpl_level }}">THCPL-{{ thcpl_level }}</span>
+      {% endif %}
+      {% if post.core %}
+        {% assign core_level = post.core | remove: "CORE" | remove: "-" | strip %}
+        {% assign core_class = core_level | replace: "*", "star" %}
+        <span class="pub-badge badge-{{ core_class }}">CORE-{{ core_level }}</span>
       {% endif %}
       {% if post.link %}
         <a href="{{ post.link }}">{{ title }}</a> <a href="{{ base_path }}{{ post.url }}" rel="permalink"><i class="fa fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>

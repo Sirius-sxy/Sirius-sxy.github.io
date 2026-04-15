@@ -30,7 +30,16 @@ layout: default
             <h1 class="page__title" itemprop="headline">
               {% if page.ccf %}
                 {% assign ccf_level = page.ccf | remove: "CCF" | remove: "-" | strip %}
-                <span class="ccf-badge ccf-badge-{{ ccf_level }}">CCF-{{ ccf_level }}</span>
+                <span class="pub-badge badge-{{ ccf_level }}">CCF-{{ ccf_level }}</span>
+              {% endif %}
+              {% if page.thcpl %}
+                {% assign thcpl_level = page.thcpl | remove: "THCPL" | remove: "-" | strip %}
+                <span class="pub-badge badge-{{ thcpl_level }}">THCPL-{{ thcpl_level }}</span>
+              {% endif %}
+              {% if page.core %}
+                {% assign core_level = page.core | remove: "CORE" | remove: "-" | strip %}
+                {% assign core_class = core_level | replace: "*", "star" %}
+                <span class="pub-badge badge-{{ core_class }}">CORE-{{ core_level }}</span>
               {% endif %}
               {{ page.title | markdownify | remove: "<p>" | remove: "</p>" }}
             </h1>

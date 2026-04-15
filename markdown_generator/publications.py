@@ -91,6 +91,12 @@ for row, item in publications.iterrows():
     if "ccf" in item.index and not pd.isna(item.ccf) and len(str(item.ccf)) > 0:
         md += "\nccf: '" + html_escape(str(item.ccf)) + "'"
         
+    if "thcpl" in item.index and not pd.isna(item.thcpl) and len(str(item.thcpl)) > 0:
+        md += "\nthcpl: '" + html_escape(str(item.thcpl)) + "'"
+        
+    if "core" in item.index and not pd.isna(item.core) and len(str(item.core)) > 0:
+        md += "\ncore: '" + html_escape(str(item.core)) + "'"
+        
     if "bibtex" in item.index and not pd.isna(item.bibtex) and len(str(item.bibtex)) > 5:
         md += "\nbibtex: |-\n"
         for line in str(item.bibtex).split("\n"):

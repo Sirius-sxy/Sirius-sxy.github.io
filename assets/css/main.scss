@@ -40,7 +40,7 @@
 @import "vendor/magnific-popup/magnific-popup";
 @import "print";
 /* Custom CSS for Publications */
-.ccf-badge {
+.pub-badge {
   display: inline-block;
   padding: 0.15em 0.4em;
   font-size: 0.65em;
@@ -48,13 +48,14 @@
   color: #fff;
   border-radius: 4px;
   vertical-align: middle;
-  margin-right: 8px;
+  margin-right: 6px;
   margin-bottom: 2px;
   background-color: #6c757d; /* Default gray */
 }
-.ccf-badge-A { background-color: #d9534f; } /* Red for CCF-A */
-.ccf-badge-B { background-color: #f0ad4e; } /* Orange for CCF-B */
-.ccf-badge-C { background-color: #5cb85c; } /* Green for CCF-C */
+.badge-Astar { background-color: #8e44ad; } /* Purple for A* */
+.badge-A { background-color: #d9534f; } /* Red for A */
+.badge-B { background-color: #f0ad4e; } /* Orange for B */
+.badge-C { background-color: #5cb85c; } /* Green for C */
 
 .pub-btn-group {
   margin-top: 10px;
