@@ -1,0 +1,19 @@
+{
+  "title": "Your paper title",
+  "slug": "your-paper-slug",
+  "date": "2026-04-19",
+  "venue": "Conference / Journal Name",
+  "category": "conferences",
+  "published": true,
+  "paperurl": "https://example.com/paper.pdf",
+  "repogiturl": "https://github.com/you/your-project",
+  "repolicense": "MIT",
+  "ccf": "A",
+  "thcpl": "A",
+  "core": "A*",
+  "citation": "Full citation text here.",
+  "body": "# Abstract\n\nWrite the markdown content for the paper page here.",
+  "extra_frontmatter": {
+    "opensource": true
+  }
+}
