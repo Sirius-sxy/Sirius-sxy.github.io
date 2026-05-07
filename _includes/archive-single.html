@@ -41,14 +41,12 @@
         {% if post.collection == 'teaching' %}
           <p> {{ post.type }}, <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }} </p>
         {% elsif post.collection == 'publications' %}
-          <div style="margin-bottom: 5px;">
-            {% if post.published %}
-              <p style="font-size: smaller;font-family: 'Times New Roman', Times, serif; margin: 0; padding: 0;"><em>Published in {{ post.venue }}, {{ post.date | default: "1900-01-01" | date: "%Y" }}</em> </p>
-            {% else %}
-              <p style="font-size: smaller;font-family: 'Times New Roman', Times, serif; margin: 0; padding: 0;"><em>To be Published in {{ post.venue }}, {{ post.date | default: "1900-01-01" | date: "%Y" }}</em> </p>
-            {% endif %}
-          </div>
-          <div style="margin-bottom: 10px;">
+          <p class="pub-venue">
+            {% unless post.published %}<em>To appear in</em>{% else %}<em>Published in</em>{% endunless %}
+            <span class="pub-venue__name">{{ post.venue }}</span>,
+            <span class="pub-venue__year">{{ post.date | default: "1900-01-01" | date: "%Y" }}</span>
+          </p>
+          <div class="pub-badges">
             {% if post.ccf %}
               {% assign ccf_level = post.ccf | remove: "CCF" | remove: "-" | strip %}
               <span class="pub-badge badge-{{ ccf_level }}">CCF-{{ ccf_level }}</span>
@@ -63,7 +61,7 @@
               <span class="pub-badge badge-{{ core_class }}">CORE-{{ core_level }}</span>
             {% endif %}
             {% if post.poster_demo %}
-              <span class="pub-badge">Poster/Demo</span>
+              <span class="pub-badge badge-poster">Poster/Demo</span>
             {% endif %}
           </div>
         {% elsif post.date %}

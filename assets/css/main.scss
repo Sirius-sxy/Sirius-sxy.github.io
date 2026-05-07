@@ -39,73 +39,634 @@
 @import "vendor/font-awesome/brands";
 @import "vendor/magnific-popup/magnific-popup";
 @import "print";
-/* Custom CSS for Publications */
-.pub-badge {
-  display: inline-block;
-  padding: 0.15em 0.4em;
-  font-size: 0.65em;
-  font-weight: bold;
-  color: #fff;
-  border-radius: 4px;
-  vertical-align: middle;
-  margin-right: 6px;
-  margin-bottom: 2px;
-  background-color: #6c757d; /* Default gray */
-}
-.badge-Astar { background-color: #8e44ad; } /* Purple for A* */
-.badge-A { background-color: #d9534f; } /* Red for A */
-.badge-B { background-color: #f0ad4e; } /* Orange for B */
-.badge-C { background-color: #5cb85c; } /* Green for C */
 
+/* ==========================================================================
+   Site polish — modern academic look
+   ========================================================================== */
+
+/* Design tokens (CSS custom properties for use outside SCSS scope) */
+:root {
+  --c-text:       #1f2937;
+  --c-muted:      #6b7280;
+  --c-soft:       #f5f7fa;
+  --c-soft-2:     #eef2f7;
+  --c-border:     #e5e9ee;
+  --c-border-2:   #d8dee6;
+  --c-accent:     #2563eb;
+  --c-accent-d:   #1d4ed8;
+  --c-accent-l:   rgba(37, 99, 235, 0.10);
+  --c-primary:    #2c3e50;
+  --c-card:       #ffffff;
+  --shadow-xs:    0 1px 2px rgba(15, 23, 42, 0.05);
+  --shadow-sm:    0 2px 6px rgba(15, 23, 42, 0.06);
+  --shadow-md:    0 6px 18px rgba(15, 23, 42, 0.08);
+  --shadow-lg:    0 12px 32px rgba(15, 23, 42, 0.12);
+  --radius-sm:    6px;
+  --radius-md:    10px;
+  --radius-lg:    14px;
+  --transition:   all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ----- Base body polish ---------------------------------------------------- */
+html { scroll-behavior: smooth; }
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  color: var(--c-text);
+  background: var(--c-soft);
+}
+
+::selection {
+  background: var(--c-accent-l);
+  color: var(--c-accent-d);
+}
+
+a {
+  color: var(--c-accent);
+  transition: var(--transition);
+}
+a:hover { color: var(--c-accent-d); }
+
+/* Slightly tighter, friendlier headings */
+h1, h2, h3, h4, h5, h6 { letter-spacing: -0.01em; }
+
+/* ----- Page title (h1) ----------------------------------------------------- */
+.page__title {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--c-primary);
+  position: relative;
+  padding-bottom: 0.4em;
+
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 56px;
+    height: 3px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--c-accent), #60a5fa);
+  }
+}
+
+/* The publications page title pretends to be an article header — leave it open */
+.archive .page__title {
+  margin-bottom: 1.2em;
+}
+
+/* ----- Section heading (Conference Papers / Journal Articles…) ------------- */
+.section-title {
+  margin-top: 2em;
+  margin-bottom: 1em;
+  padding: 0.55em 0 0.55em 0.9em;
+  font-size: 1.35em;
+  font-weight: 700;
+  color: var(--c-primary);
+  border-left: 4px solid var(--c-accent);
+  background: linear-gradient(90deg, var(--c-accent-l), transparent 65%);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+/* Strip the theme's default h2 underline inside content sections */
+.page__content h2 {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* ----- Main canvas tweak --------------------------------------------------- */
+#main {
+  /* a touch more breathing room */
+  padding-top: 0.5em;
+}
+
+/* ----- Masthead (top nav) -------------------------------------------------- */
+.masthead {
+  background: rgba(255, 255, 255, 0.82);
+  -webkit-backdrop-filter: saturate(180%) blur(10px);
+          backdrop-filter: saturate(180%) blur(10px);
+  border-bottom: 1px solid var(--c-border);
+  box-shadow: var(--shadow-xs);
+}
+
+.greedy-nav {
+  background: transparent;
+
+  a { font-weight: 500; }
+
+  .visible-links li:first-child a {
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--c-primary);
+  }
+
+  .visible-links a {
+    transition: var(--transition);
+
+    &::before {
+      height: 2px !important;
+      background: var(--c-accent) !important;
+      border-radius: 1px;
+    }
+
+    &:hover { color: var(--c-accent); }
+  }
+}
+
+/* ----- Sidebar — author profile ------------------------------------------- */
+@media screen and (min-width: 1024px) {
+  .sidebar { padding-top: calc(70px + 0.5em); }
+}
+
+.author__avatar {
+  img {
+    border-radius: 50%;
+    border: 3px solid #fff !important;
+    box-shadow: 0 0 0 1px var(--c-border), var(--shadow-md);
+    transition: var(--transition);
+  }
+
+  img:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 0 1px var(--c-border-2), var(--shadow-lg);
+  }
+}
+
+.sidebar .author__name {
+  font-size: 1.15em;
+  font-weight: 700;
+  color: var(--c-primary);
+  letter-spacing: -0.01em;
+}
+
+.author__pronouns {
+  color: var(--c-muted);
+  font-size: 0.85em;
+  font-style: italic;
+}
+
+.author__bio {
+  color: var(--c-text);
+  font-size: 0.92em;
+  line-height: 1.55;
+}
+
+.author__urls-wrapper {
+  /* hide the always-useless "Follow" button on desktop layouts */
+  > button.btn--inverse { display: none; }
+}
+
+.author__urls {
+  li {
+    border-radius: var(--radius-sm);
+    transition: var(--transition);
+  }
+
+  a {
+    padding: 4px 8px !important;
+    border-radius: var(--radius-sm);
+    color: var(--c-text) !important;
+    transition: var(--transition);
+
+    &:hover {
+      background: var(--c-accent-l);
+      color: var(--c-accent-d) !important;
+      text-decoration: none !important;
+      transform: translateX(2px);
+    }
+
+    i { color: var(--c-muted); transition: var(--transition); }
+
+    &:hover i { color: var(--c-accent); }
+  }
+}
+
+/* ----- About / single page content ---------------------------------------- */
+.page__abstract {
+  font-size: 1.02em;
+  line-height: 1.75;
+  color: var(--c-text);
+
+  p:first-child { margin-top: 0.5em; }
+}
+
+/* On the home (about) page the intro paragraph deserves more presence */
+.page[itemtype$="CreativeWork"] .page__abstract > p:first-child {
+  font-size: 1.05em;
+  line-height: 1.78;
+}
+
+/* ----- Publication card --------------------------------------------------- */
+/* Universal card style — applies to publications, awards, and home featured. */
+.list__item {
+  margin-bottom: 1.2em;
+  /* The theme reserves space here for a right sidebar that no page actually
+     uses. Override so cards span the full content width consistently. */
+  padding-right: 0 !important;
+
+  .archive__item {
+    background: var(--c-card);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius-md);
+    padding: 1.1em 1.3em 1.05em;
+    box-shadow: var(--shadow-xs);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .archive__item::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, var(--c-accent), #60a5fa);
+    opacity: 0;
+    transition: var(--transition);
+  }
+
+  .archive__item:hover {
+    border-color: var(--c-border-2);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+
+  .archive__item:hover::before { opacity: 1; }
+
+  .archive__item-title {
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-size: 1.08em;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: -0.005em;
+
+    a {
+      color: var(--c-primary);
+      text-decoration: none;
+      transition: var(--transition);
+
+      &:hover { color: var(--c-accent); }
+    }
+
+    .fa-link { color: var(--c-muted); font-size: 0.7em; margin-left: 0.4em; }
+  }
+}
+
+/* Disable the theme's hover-underline on archive titles inside cards */
+.archive a:hover,
+.featured-pubs a:hover { text-decoration: none; }
+.list__item .archive__item:hover .archive__item-title { text-decoration: none; }
+
+/* ----- Publication venue line --------------------------------------------- */
+.pub-venue {
+  margin: 0 0 0.55em;
+  font-size: 0.9em;
+  color: var(--c-muted);
+  font-family: $serif;
+
+  em {
+    color: var(--c-muted);
+    font-style: italic;
+    margin-right: 0.25em;
+  }
+
+  .pub-venue__name {
+    color: var(--c-text);
+    font-style: italic;
+    font-weight: 500;
+  }
+
+  .pub-venue__year {
+    color: var(--c-muted);
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* ----- Publication badges -------------------------------------------------- */
+.pub-badges {
+  margin-bottom: 0.75em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 6px;
+}
+
+.pub-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.18em 0.6em;
+  font-size: 0.7em;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #fff;
+  border-radius: 999px;
+  vertical-align: middle;
+  background-color: #6c757d;
+  box-shadow: var(--shadow-xs);
+  text-transform: uppercase;
+}
+
+.badge-Astar { background: linear-gradient(135deg, #8e44ad, #b36ac7); }
+.badge-A     { background: linear-gradient(135deg, #d9534f, #e87874); }
+.badge-B     { background: linear-gradient(135deg, #ec8e1c, #f3b14a); }
+.badge-C     { background: linear-gradient(135deg, #2faa6c, #5fc28e); }
+.badge-poster {
+  background: #fff;
+  color: var(--c-text) !important;
+  border: 1px solid var(--c-border-2);
+}
+
+/* ----- Publication action buttons ----------------------------------------- */
 .pub-btn-group {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 0.6em;
+  margin-bottom: 0.4em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
 }
 
 .pub-btn-group .btn {
   display: inline-flex;
   align-items: center;
-  padding: 0.4em 0.8em;
-  font-size: 0.75em;
-  margin-right: 5px;
-  background-color: #f8f9fa;
-  color: #333 !important;
-  border: 1px solid #ddd !important;
-  transition: all 0.2s ease-in-out;
+  padding: 0.42em 0.85em;
+  font-size: 0.78em;
+  font-weight: 600;
+  margin: 0;
+  background-color: #fff;
+  color: var(--c-primary) !important;
+  border: 1px solid var(--c-border) !important;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-xs);
+  transition: var(--transition);
+
+  i { margin-right: 6px; color: var(--c-muted); transition: var(--transition); }
+
+  &:hover {
+    background: var(--c-accent);
+    color: #fff !important;
+    border-color: var(--c-accent) !important;
+    box-shadow: var(--shadow-sm);
+    transform: translateY(-1px);
+    text-decoration: none;
+  }
+
+  &:hover i { color: #fff; }
+
+  &:active { transform: translateY(0); box-shadow: var(--shadow-xs); }
 }
 
-.pub-btn-group .btn:hover {
-  background-color: #e2e6ea;
-  border-color: #dae0e5 !important;
-  text-decoration: none;
+.pub-btn-group .btn.citation-toggle {
+  background: var(--c-soft-2);
+  border-color: var(--c-border-2) !important;
+
+  &:hover {
+    background: var(--c-primary);
+    border-color: var(--c-primary) !important;
+  }
 }
 
-.pub-btn-group .btn i {
-  margin-right: 5px;
-}
-
+/* ----- Citation box ------------------------------------------------------- */
 .citation-box {
-  background: #f8f9fa;
-  padding: 15px;
-  border-radius: 6px;
+  position: relative;
+  background: var(--c-soft);
+  padding: 1em 1.2em 1em 1.4em;
+  border-radius: var(--radius-md);
+  font-size: 0.88em;
+  border: 1px solid var(--c-border);
+  margin: 0.8em 0 0.5em;
+  animation: cite-fade 0.18s ease-out;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 14px; bottom: 14px;
+    width: 3px;
+    border-radius: 2px;
+    background: var(--c-accent);
+  }
+
+  strong {
+    color: var(--c-primary);
+    display: inline-block;
+    margin-bottom: 6px;
+    font-size: 0.92em;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  pre {
+    background: #1e293b;
+    color: #e2e8f0;
+    padding: 0.85em 1em;
+    border-radius: var(--radius-sm);
+    overflow-x: auto;
+    margin: 6px 0 0 0;
+    font-size: 0.86em;
+    line-height: 1.55;
+    box-shadow: var(--shadow-xs);
+  }
+
+  pre code { color: #e2e8f0; }
+}
+
+@keyframes cite-fade {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ----- Repo license note --------------------------------------------------- */
+.repo-license-note {
   font-size: 0.85em;
-  border: 1px solid #e9ecef;
-  margin-top: 10px;
-  display: none;
+  color: var(--c-muted);
+  margin-top: 1em;
+  padding: 0.6em 0.9em;
+  background: var(--c-soft);
+  border: 1px dashed var(--c-border-2);
+  border-radius: var(--radius-sm);
+
+  i { margin-right: 0.4em; color: var(--c-accent); }
+  a { font-weight: 600; }
 }
 
-.citation-box pre {
-  background: #272822; /* Monokai dark background */
-  color: #f8f8f2;
-  padding: 10px;
-  border-radius: 4px;
-  overflow-x: auto;
-  margin: 5px 0 0 0;
+/* ----- Footer ------------------------------------------------------------- */
+.page__footer {
+  background: linear-gradient(180deg, #fafbfc, #f1f4f8);
+  border-top: 1px solid var(--c-border);
+  color: var(--c-muted);
+
+  a {
+    color: var(--c-text);
+    transition: var(--transition);
+    &:hover { color: var(--c-accent); text-decoration: none; }
+  }
+}
+
+.page__footer-follow li {
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 500;
+}
+
+.page__footer-copyright { line-height: 1.65; }
+
+/* ----- Pagination polish (single layout / posts) -------------------------- */
+.pagination li a {
+  border-radius: var(--radius-sm);
+  margin-right: 4px;
+  transition: var(--transition);
+
+  &:hover {
+    color: var(--c-accent) !important;
+    border-color: var(--c-accent) !important;
+    background: var(--c-accent-l);
+  }
+
+  &.current { background: var(--c-primary); border-color: var(--c-primary); }
+}
+
+/* ----- Home page: featured publications section --------------------------- */
+.featured-pubs {
+  margin: 0.5em 0 1.5em;
+
+  .archive__item-title {
+    font-size: 1.02em;
+  }
+
+  .archive__item {
+    padding: 0.95em 1.15em;
+  }
+
+  /* compact action row in the featured cards */
+  .pub-btn-group { margin-top: 0.5em; }
+}
+
+.featured-pubs__more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0.4em 0 1.5em;
+  padding: 0.5em 1em;
+  font-size: 0.92em;
+  font-weight: 600;
+  color: var(--c-accent) !important;
+  background: var(--c-accent-l);
+  border-radius: var(--radius-sm);
+  text-decoration: none !important;
+  transition: var(--transition);
+
+  &:hover {
+    background: var(--c-accent);
+    color: #fff !important;
+    transform: translateX(2px);
+  }
+
+  &::after {
+    content: "→";
+    transition: var(--transition);
+  }
+
+  &:hover::after { transform: translateX(2px); }
+}
+
+/* Section heading variant used on the home page. Same DNA as .section-title
+   but slightly tighter so it works inside flowing content. */
+.home-section-title {
+  margin-top: 1.6em;
+  margin-bottom: 0.9em;
+  padding: 0.45em 0 0.45em 0.85em;
+  font-size: 1.25em;
+  font-weight: 700;
+  color: var(--c-primary);
+  border-left: 4px solid var(--c-accent);
+  background: linear-gradient(90deg, var(--c-accent-l), transparent 70%);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  border-bottom: none !important;
+}
+
+/* ----- CV page polish ----------------------------------------------------- */
+.cv-section {
+  margin-top: 1.4em;
+  margin-bottom: 0.4em;
+  padding: 0.45em 0 0.45em 0.85em;
+  font-size: 1.3em;
+  font-weight: 700;
+  color: var(--c-primary);
+  border-left: 4px solid var(--c-accent);
+  background: linear-gradient(90deg, var(--c-accent-l), transparent 70%);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  border-bottom: none !important;
+}
+
+.cv-edu-list {
+  list-style: none;
+  margin: 0 0 1.4em;
+  padding: 0;
+
+  li {
+    position: relative;
+    padding: 0.85em 1.1em 0.85em 1.3em;
+    margin-bottom: 0.7em;
+    background: var(--c-card);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-xs);
+    line-height: 1.55;
+    transition: var(--transition);
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0; top: 14px; bottom: 14px;
+      width: 3px;
+      background: linear-gradient(180deg, var(--c-accent), #60a5fa);
+      border-radius: 2px;
+    }
+
+    &:hover {
+      border-color: var(--c-border-2);
+      box-shadow: var(--shadow-sm);
+      transform: translateY(-1px);
+    }
+
+    .cv-degree { font-weight: 600; color: var(--c-primary); }
+    .cv-period {
+      float: right;
+      color: var(--c-muted);
+      font-size: 0.9em;
+      font-variant-numeric: tabular-nums;
+    }
+  }
+}
+
+.cv-cite {
+  margin: 0.3em 0 0;
+  font-size: 0.86em;
+  line-height: 1.55;
+  color: var(--c-muted);
+  font-family: $serif;
+}
+
+.cv-award-meta {
+  margin: 0;
   font-size: 0.9em;
+  color: var(--c-muted);
+  font-family: $serif;
+  font-style: italic;
 }
 
-.citation-box strong {
-  color: #495057;
-  display: block;
-  margin-bottom: 5px;
+/* ----- Responsive: tighten card padding on phones ------------------------- */
+@media (max-width: 600px) {
+  .archive .list__item .archive__item {
+    padding: 0.95em 1em;
+  }
+
+  .pub-btn-group .btn {
+    font-size: 0.75em;
+    padding: 0.4em 0.7em;
+  }
+
+  .section-title { font-size: 1.2em; }
 }

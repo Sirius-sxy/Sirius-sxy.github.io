@@ -41,12 +41,12 @@ layout: default
         {% if page.collection == 'teaching' %}
           <p> {{ page.type }}, <i>{{ page.venue }}</i>, {{ page.date | default: "1900-01-01" | date: "%Y" }} </p>
         {% elsif page.venue and page.date %}
-          {% if page.published %}
-            <p>Published in <i>{{ page.venue }}</i>, {{ page.date | default: "1900-01-01" | date: "%Y" }} </p>
-          {% else %}
-            <p>To be Published in <i>{{ page.venue }}</i>, {{ page.date | default: "1900-01-01" | date: "%Y" }} </p>
-          {% endif %}
-          <div style="margin-top: 5px;">
+          <p class="pub-venue">
+            {% unless page.published %}<em>To appear in</em>{% else %}<em>Published in</em>{% endunless %}
+            <span class="pub-venue__name">{{ page.venue }}</span>,
+            <span class="pub-venue__year">{{ page.date | default: "1900-01-01" | date: "%Y" }}</span>
+          </p>
+          <div class="pub-badges">
             {% if page.ccf %}
               {% assign ccf_level = page.ccf | remove: "CCF" | remove: "-" | strip %}
               <span class="pub-badge badge-{{ ccf_level }}">CCF-{{ ccf_level }}</span>
@@ -61,7 +61,7 @@ layout: default
               <span class="pub-badge badge-{{ core_class }}">CORE-{{ core_level }}</span>
             {% endif %}
             {% if page.poster_demo %}
-              <span class="pub-badge">Poster/Demo</span>
+              <span class="pub-badge badge-poster">Poster/Demo</span>
             {% endif %}
           </div>
         {% elsif page.date %}
@@ -71,7 +71,7 @@ layout: default
       {% endunless %}
 
       <section class="page__content" itemprop="text">
-        <p style="font-family: 'Times New Roman', Times, serif;">{{ content }}</p>
+        <div class="page__abstract">{{ content }}</div>
 
         <div class="pub-btn-group">
           {% if page.paperurl %}
@@ -118,8 +118,8 @@ layout: default
         {% endif %}
 
         {% if page.opensource and page.repolicense %}
-          <p style="font-size: 0.85em; color: #666;">
-            <i class="fas fa-balance-scale"></i> 
+          <p class="repo-license-note">
+            <i class="fas fa-balance-scale"></i>
             Kindly noting that this repo is under 
             {% if page.repolicense == 'AGPL3' %}
               <a href="https://www.gnu.org/licenses/agpl-3.0.html"><strong>GNU Affero Public License v3</strong></a>

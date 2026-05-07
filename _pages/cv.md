@@ -9,19 +9,26 @@ redirect_from:
 
 {% include base_path %}
 
-Education
-======
-* Ph.D in Institute of Network Science and Cyberspace, Tsinghua University, 2024-2029(expected)
-* B.S. in Department of Automation, Tsinghua University, 2020-2024
+<h2 class="cv-section">Education</h2>
+<ul class="cv-edu-list">
+  <li>
+    <span class="cv-period">2024 – 2029 (expected)</span>
+    <span class="cv-degree">Ph.D.</span>, Institute of Network Science and Cyberspace, Tsinghua University
+  </li>
+  <li>
+    <span class="cv-period">2020 – 2024</span>
+    <span class="cv-degree">B.S.</span>, Department of Automation, Tsinghua University
+  </li>
+</ul>
 
-Publications
-======
-  <ul>{% for post in site.publications reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
+<h2 class="cv-section">Publications</h2>
+{% assign sorted_pubs = site.publications | sort: "date" | reverse %}
+{% for post in sorted_pubs %}
+  {% include archive-single-cv.html %}
+{% endfor %}
 
-Awards
-======
-  <ul>{% for post in site.awards reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
+<h2 class="cv-section">Awards</h2>
+{% assign sorted_awards = site.awards | sort: "date" | reverse %}
+{% for post in sorted_awards %}
+  {% include archive-single-cv.html %}
+{% endfor %}
