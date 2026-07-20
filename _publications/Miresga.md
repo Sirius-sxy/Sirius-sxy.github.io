@@ -50,6 +50,8 @@ Miresga uses three components to complete these three tasks: the programmable sw
 
 For more details, please refer to [our paper](https://dl.acm.org/doi/pdf/10.1145/3696410.3714809) and the [GitHub repository](https://github.com/THUNAME/Miresga). To run Miresga, please follow the instructions in the GitHub repository. If you have any questions, feel free to open an issue in the repository or send us an email. We will address them as soon as possible.
 
+An extended journal version of this paper has been accepted for publication in IEEE Transactions on Computers: [Miresga: Achieving High-Performance and Reliable Layer-7 Load Balancing with Programmable Switches](/publication/Miresga-TC).
+
 # III. Third-Party Dependencies
 
 This project includes the following third-party libraries as Git submodules:
