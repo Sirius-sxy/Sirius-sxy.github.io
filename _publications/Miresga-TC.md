@@ -10,7 +10,6 @@ published: true
 paperurl: 'https://ieeexplore.ieee.org/document/11617301'
 repogiturl: 'https://github.com/THUNAME/Miresga'
 repozenodourl: 'https://zenodo.org/records/14792352'
-repodoiurl: 'https://doi.org/10.5281/zenodo.14792351'
 repolicense: 'AGPL3'
 citation: "Xiaoyi Shi, Ying Liu, Lin He, Yifan Yang, Jiasheng Zhou, Rongbang Wu, and Jinlong E. Miresga: Achieving High-Performance and Reliable Layer-7 Load Balancing with Programmable Switches. IEEE Transactions on Computers, 2026. (Early Access) https://doi.org/10.1109/TC.2026.3715854"
 ccf: "A"

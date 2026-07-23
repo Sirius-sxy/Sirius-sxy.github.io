@@ -10,7 +10,6 @@ opensource: true
 published: true
 repogiturl: 'https://github.com/THUNAME/Miresga'
 repozenodourl: 'https://zenodo.org/records/14792352'
-repodoiurl: 'https://doi.org/10.5281/zenodo.14792351'
 repolicense: 'AGPL3'
 paperurl: 'https://dl.acm.org/doi/pdf/10.1145/3696410.3714809'
 reviewsurl: 'https://openreview.net/forum?id=iQEcCo2Mn8'
