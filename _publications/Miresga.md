@@ -4,7 +4,7 @@ collection: publications
 category: conferences
 permalink: /publication/Miresga
 date: 2025-4-22
-venue: 'Proceedings of the ACM Web Conference 2025'
+venue: 'Proceedings of the ACM Web Conference 2025 (WWW 2025)'
 #slidesurl: #'http://academicpages.github.io/files/slides1.pdf'
 opensource: true
 published: true

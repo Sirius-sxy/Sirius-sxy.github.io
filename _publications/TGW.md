@@ -5,7 +5,7 @@ category: conferences
 permalink: /publication/TGW
 published: true
 date: 2025-7-7 
-venue: '2025 USENIX Annual Technical Conference'
+venue: '2025 USENIX Annual Technical Conference (USENIX ATC 2025)'
 paperurl: 'https://www.usenix.org/system/files/atc25-yang-yifan.pdf'
 citation: "Yifan Yang, Lin He, Jiasheng Zhou, Xiaoyi Shi, Yichi Xu, Shicheng Wang, Jinlong E, Ying Liu, Junwei Zhang, Zhuang Yuan, and Hengyang Xu, TGW: Operating an Efficient and Resilient Cloud Gateway at Scale. In Proceedings of the 2025 USENIX Annual Technical Conference (ATC '25), Boston, MA, USA, July 2025."
 ccf: "A"

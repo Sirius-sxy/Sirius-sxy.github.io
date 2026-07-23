@@ -4,7 +4,7 @@ collection: publications
 category: conferences
 permalink: /publication/Helixir
 date: 2025-9-22
-venue: 'The 33rd IEEE International Conference on Network Protocols'
+venue: 'The 33rd IEEE International Conference on Network Protocols (ICNP 2025)'
 opensource: true
 published: true
 repogiturl: 'https://github.com/THUNAME/Helixir'

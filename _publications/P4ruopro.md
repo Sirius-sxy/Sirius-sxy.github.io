@@ -4,7 +4,7 @@ collection: publications
 category: conferences
 permalink: /publication/P4runpro
 date: 2024-08-04
-venue: 'Proceedings of the ACM SIGCOMM 2024 Conference'
+venue: 'The ACM International Conference on Applications, Technologies, Architectures, and Protocols for Computer Communication (SIGCOMM 2024)'
 opensource: true
 published: true
 repogiturl: 'https://github.com/P4runpro/P4runpro'
