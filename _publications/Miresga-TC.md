@@ -3,25 +3,28 @@ title: "Miresga: Achieving High-Performance and Reliable Layer-7 Load Balancing 
 collection: publications
 category: manuscripts
 permalink: /publication/Miresga-TC
-date: 2026-07-20
+date: 2026-07-22
 venue: 'IEEE Transactions on Computers'
 opensource: true
-published: false
+published: true
+paperurl: 'https://ieeexplore.ieee.org/document/11617301'
 repogiturl: 'https://github.com/THUNAME/Miresga'
 repozenodourl: 'https://zenodo.org/records/14792352'
 repodoiurl: 'https://doi.org/10.5281/zenodo.14792351'
 repolicense: 'AGPL3'
-citation: "Xiaoyi Shi, Ying Liu, Lin He, Yifan Yang, Jiasheng Zhou, Rongbang Wu, and Jinlong E. Miresga: Achieving High-Performance and Reliable Layer-7 Load Balancing with Programmable Switches. IEEE Transactions on Computers, 2026. (Accepted, to appear)"
+citation: "Xiaoyi Shi, Ying Liu, Lin He, Yifan Yang, Jiasheng Zhou, Rongbang Wu, and Jinlong E. Miresga: Achieving High-Performance and Reliable Layer-7 Load Balancing with Programmable Switches. IEEE Transactions on Computers, 2026. (Early Access) https://doi.org/10.1109/TC.2026.3715854"
 ccf: "A"
 thcpl: "A"
-apa: "Shi, X., Liu, Y., He, L., Yang, Y., Zhou, J., Wu, R., & E, J. (2026). Miresga: Achieving high-performance and reliable layer-7 load balancing with programmable switches. IEEE Transactions on Computers. (Accepted, to appear)"
+apa: "Shi, X., Liu, Y., He, L., Yang, Y., Zhou, J., Wu, R., & E, J. (2026). Miresga: Achieving high-performance and reliable layer-7 load balancing with programmable switches. IEEE Transactions on Computers. Advance online publication. https://doi.org/10.1109/TC.2026.3715854"
 bibtex: |
   @article{shi2026miresga,
     title={Miresga: Achieving High-Performance and Reliable Layer-7 Load Balancing with Programmable Switches},
     author={Shi, Xiaoyi and Liu, Ying and He, Lin and Yang, Yifan and Zhou, Jiasheng and Wu, Rongbang and E, Jinlong},
     journal={IEEE Transactions on Computers},
     year={2026},
-    note={Accepted, to appear}
+    pages={1--14},
+    doi={10.1109/TC.2026.3715854},
+    note={Early Access}
   }
 ---
 # Abstract
