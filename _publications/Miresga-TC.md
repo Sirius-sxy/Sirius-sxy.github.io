@@ -5,25 +5,31 @@ category: manuscripts
 permalink: /publication/Miresga-TC
 date: 2026-07-22
 venue: 'IEEE Transactions on Computers'
+volume: 75
+issue: 10
+pages: '3683--3697'
+publication_date: 2026-07-22
 opensource: true
 published: true
 paperurl: 'https://ieeexplore.ieee.org/document/11617301'
 repogiturl: 'https://github.com/THUNAME/Miresga'
 repozenodourl: 'https://zenodo.org/records/14792352'
 repolicense: 'AGPL3'
-citation: "Xiaoyi Shi, Ying Liu, Lin He, Yifan Yang, Jiasheng Zhou, Rongbang Wu, and Jinlong E. Miresga: Achieving High-Performance and Reliable Layer-7 Load Balancing with Programmable Switches. IEEE Transactions on Computers, 2026. (Early Access) https://doi.org/10.1109/TC.2026.3715854"
+citation: "Xiaoyi Shi, Ying Liu, Lin He, Yifan Yang, Jiasheng Zhou, Rongbang Wu, and Jinlong E. Miresga: Achieving High-Performance and Reliable Layer-7 Load Balancing with Programmable Switches. IEEE Transactions on Computers, vol. 75, no. 10, pp. 3683-3697, Oct. 2026. https://doi.org/10.1109/TC.2026.3715854"
 ccf: "A"
 thcpl: "A"
-apa: "Shi, X., Liu, Y., He, L., Yang, Y., Zhou, J., Wu, R., & E, J. (2026). Miresga: Achieving high-performance and reliable layer-7 load balancing with programmable switches. IEEE Transactions on Computers. Advance online publication. https://doi.org/10.1109/TC.2026.3715854"
+apa: "Shi, X., Liu, Y., He, L., Yang, Y., Zhou, J., Wu, R., & E, J. (2026). Miresga: Achieving high-performance and reliable layer-7 load balancing with programmable switches. IEEE Transactions on Computers, 75(10), 3683–3697. https://doi.org/10.1109/TC.2026.3715854"
 bibtex: |
   @article{shi2026miresga,
     title={Miresga: Achieving High-Performance and Reliable Layer-7 Load Balancing with Programmable Switches},
     author={Shi, Xiaoyi and Liu, Ying and He, Lin and Yang, Yifan and Zhou, Jiasheng and Wu, Rongbang and E, Jinlong},
     journal={IEEE Transactions on Computers},
+    volume={75},
+    number={10},
     year={2026},
-    pages={1--14},
-    doi={10.1109/TC.2026.3715854},
-    note={Early Access}
+    pages={3683--3697},
+    month={oct},
+    doi={10.1109/TC.2026.3715854}
   }
 ---
 # Abstract
