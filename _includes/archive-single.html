@@ -101,8 +101,8 @@
     <div class="citation-box" style="display: none;">
       {% if post.citation or post.apa %}
       <div class="citation-content">
-        <strong>APA:</strong>
-        <p style="margin: 5px 0;">{{ post.apa | default: post.citation }}</p>
+        <strong>Citation:</strong>
+        <p style="margin: 5px 0;">{{ post.citation | default: post.apa }}</p>
       </div>
       {% endif %}
       {% if post.bibtex %}

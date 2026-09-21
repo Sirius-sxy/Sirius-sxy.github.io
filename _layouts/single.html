@@ -104,8 +104,8 @@ layout: default
         <div class="citation-box" style="display: none;">
           {% if page.citation or page.apa %}
           <div class="citation-content">
-            <strong>APA:</strong>
-            <p style="margin: 5px 0;">{{ page.apa | default: page.citation }}</p>
+            <strong>Citation:</strong>
+            <p style="margin: 5px 0;">{{ page.citation | default: page.apa }}</p>
           </div>
           {% endif %}
           {% if page.bibtex %}
