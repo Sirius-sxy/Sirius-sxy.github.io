@@ -588,7 +588,7 @@ h1, h2, h3, h4, h5, h6 { letter-spacing: -0.01em; }
 
 /* ----- CV page polish ----------------------------------------------------- */
 .cv-downloads {
-  margin-bottom: 1.5em;
+  margin: 1.5em 0;
   padding: 1em 1.2em;
   border: 1px solid var(--c-border);
   border-radius: var(--radius-md);
