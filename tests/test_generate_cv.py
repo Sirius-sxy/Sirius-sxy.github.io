@@ -95,6 +95,20 @@ class CVTests(unittest.TestCase):
         self.assertIn("New award", html)
         self.assertNotIn("javascript:", html)
 
+    def test_bibtex_author_formats_preserve_names_and_order(self):
+        self.add_record("_publications", "authors.md", {
+            "title": "Author parsing", "date": "2028-01-01", "category": "conferences",
+            "venue": "CONF", "bibtex": """@inproceedings{names,
+                author={Shi, Xiaoyi and Ludwig van Beethoven and de la Cruz, Juan and García, María},
+                year={2028}
+            }""",
+        })
+        paper = build_context(self.root)["publications"][0]
+        self.assertEqual(paper["authors"], [
+            "Xiaoyi Shi", "Ludwig van Beethoven", "Juan de la Cruz", "María García",
+        ])
+        self.assertIn("<strong>Xiaoyi Shi</strong>", render_html(self.root))
+
     def test_collection_supersedes_extra_and_opt_out_is_supported(self):
         title = build_context(self.root)["publications"][0]["title"]
         self.add_record("_publications", "elastic.md", {

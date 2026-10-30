@@ -14,7 +14,7 @@ import re
 from urllib.parse import urlparse
 
 import bibtexparser
-from bibtexparser.customization import getnames
+from bibtexparser.middlewares import MergeNameParts, SeparateCoAuthors, SplitNameParts
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 import yaml
 
@@ -60,14 +60,12 @@ def title_key(title: str) -> str:
 
 
 def publication(item: dict, overrides: dict, site_url: str) -> dict:
-    entries = bibtexparser.loads(item.get("bibtex", "")).entries
-    bib = entries[0] if entries else {}
-    authors = item.get("authors", [])
-    if not authors and bib.get("author"):
-        authors = []
-        for name in getnames(re.split(r"\s+and\s+", bib["author"])):
-            family, _, given = name.partition(",")
-            authors.append(f"{given.strip()} {family.strip()}".strip())
+    entries = bibtexparser.parse_string(
+        item.get("bibtex", ""),
+        append_middleware=[SeparateCoAuthors(), SplitNameParts(), MergeNameParts(style="first")],
+    ).entries
+    bib = dict(entries[0]) if entries else {}
+    authors = item.get("authors") or bib.get("author", [])
     venue = overrides.get("venue", short_venue(item.get("venue", "")))
     link = item.get("paperurl") or (site_url + item["permalink"] if item.get("permalink") else "")
     if urlparse(link).scheme not in ("https", "http"):
