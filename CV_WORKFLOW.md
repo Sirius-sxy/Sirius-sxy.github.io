@@ -19,7 +19,7 @@ CV 页面 `/cv/` 底部提供中英文 PDF 的预览和下载，文件路径分�
 - `images/cv-portrait.png`：从提供的模板 PDF 提取的照片。
 - `scripts/cv/template.html`：独立的 PDF 排版模板，网页样式不会影响 PDF。
 
-模板中的 ElasticChain、校园经历、两项奖学金和补充联系方式已保留。
+模板中的校园经历、两项奖学金和补充联系方式已保留。当前简历论文仅保留已发表或已录用的条目。
 `extra_publications` 中的论文若与网站集合里的标题相同，会自动以集合版本为准。
 `publication_categories` 默认只包含会议和期刊，以保持原模板的论文范围。
 在论文或奖励的 front matter 中设置 `cv_include: false` 可从 PDF 中排除该条目。

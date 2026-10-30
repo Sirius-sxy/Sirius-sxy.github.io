@@ -32,16 +32,9 @@ publication_overrides:
   SwitchTAD:
     venue: Computer Networks
 
-# Entries present in the reference PDF but not yet in _publications/.
+# Additional accepted or published papers not yet in _publications/.
 # Once a matching title is added to the collection, the collection takes precedence.
-extra_publications:
-  - title: "ElasticChain: Programmable Switch-Driven Hotspot Mitigation for One-Sided RDMA Key-Value Stores"
-    venue: NSDI
-    year: 2027
-    ccf: A
-    status: 已投稿
-    status_en: Submitted
-    authors: [Xiaoyi Shi, Jiasheng Zhou, Lin He, Yifan Yang, Jinlong E, Guanyu Li, Ying Liu]
+extra_publications: []
 
 experience:
   - title: 清华大学自动化系学生科协干事
