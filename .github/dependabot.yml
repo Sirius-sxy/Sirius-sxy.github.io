@@ -1,0 +1,11 @@
+version: 2
+updates:
+  - package-ecosystem: pip
+    directory: /scripts
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 3
+    groups:
+      cv-dependencies:
+        patterns:
+          - "*"

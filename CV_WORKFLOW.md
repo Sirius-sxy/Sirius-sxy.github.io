@@ -55,7 +55,7 @@ python scripts/generate_cv.py --output /tmp/cv.pdf --html-output /tmp/cv.html
 
 ## GitHub Pages 自动更新
 
-`.github/workflows/pages.yml` 在推送到 `master` 时运行：测试 → 生成 PDF → 构建 Jekyll → 发布网站。
+`.github/workflows/pages.yml` 在推送到 `master` 时运行：依赖安全审计 → 测试 → 生成 PDF → 构建 Jekyll → 发布网站。
 PDF 和网站在同一次部署中更新，不需要提交机器人生成的 PDF，也不需要额外的令牌。
 Pull Request 仅构建和测试，不发布；也可在 Actions 中手动运行。
 
@@ -63,6 +63,10 @@ Pull Request 仅构建和测试，不发布；也可在 Actions 中手动运行�
 **GitHub Actions**，再推送代码或手动运行 **Build website and CV**。
 如果仓库原先使用从 `master` 分支发布的默认构建，需要完成这一次切换才能使用新的生成步骤。
 首次启用完成后无需重复设置，后续推送到 `master` 会自动生成 PDF 并发布网站。
+
+`.github/dependabot.yml` 每周检查 CV 的 Python 依赖并创建升级 PR。
+每次构建使用 `pip-audit` 检查 `scripts/requirements-cv.txt` 及其间接依赖；
+检测到已知漏洞会停止发布，修复依赖后再部署。
 
 [GitHub 官方自定义 Pages 工作流说明](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages)
 介绍了这种构建和发布方式。
