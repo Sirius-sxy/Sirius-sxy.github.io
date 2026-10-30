@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>{{ cv.name }} — 中文简历</title>
+  <meta name="author" content="{{ cv.name }}">
+  <style>
+    @page { size: A4; margin: 12mm 20mm 15mm; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: #161616;
+      font: 10pt/1.24 "Times New Roman", "Liberation Serif", "Noto Serif CJK SC", "Songti SC", serif;
+    }
+    a { color: inherit; text-decoration: none; }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 0.7pt solid #222;
+      padding-top: 5mm;
+      margin-bottom: 6mm;
+      break-inside: avoid;
+    }
+    .portrait { width: 19mm; height: auto; }
+    .contact { text-align: right; }
+    h1 { font-size: 18pt; margin: 0 0 1.2mm; }
+    .affiliation { font-size: 10.5pt; font-weight: bold; margin-bottom: 1.3mm; }
+    .contact-line { font-size: 9.5pt; line-height: 1.35; }
+    h2 {
+      font-family: "Noto Sans CJK SC", "Heiti SC", sans-serif;
+      font-size: 12pt;
+      line-height: 1.3;
+      border-bottom: 0.7pt solid #222;
+      padding-bottom: 1mm;
+      margin: 3mm 0 1.8mm;
+      break-after: avoid;
+    }
+    .education { width: 100%; border-collapse: collapse; }
+    .education td { padding: 0 0 2mm; vertical-align: top; }
+    .education td:first-child { width: 32%; }
+    .education td:last-child { text-align: right; white-space: nowrap; }
+    tr { break-inside: avoid; }
+    ul { list-style-type: square; margin: 0; padding-left: 3.3mm; }
+    li { padding-left: 0; break-inside: avoid; margin-bottom: 1.5mm; }
+    .publications { font-size: 9.4pt; line-height: 1.17; }
+    .publications li { margin-bottom: 1.45mm; }
+    .paper-title { font-size: 9.8pt; font-weight: bold; }
+    .entry { display: flex; justify-content: space-between; gap: 3mm; }
+    .period { white-space: nowrap; text-align: right; }
+    .citation { overflow-wrap: anywhere; }
+  </style>
+</head>
+<body>
+  <header>
+    {% if photo_uri %}<img class="portrait" src="{{ photo_uri }}" alt="{{ cv.name }}">{% endif %}
+    <div class="contact">
+      <h1>{{ cv.name }}</h1>
+      <div class="affiliation">{{ cv.affiliation }}</div>
+      <div class="contact-line">
+        {% if cv.phone %}{{ cv.phone }}　|　{% endif %}<a href="mailto:{{ email }}">{{ email }}</a>
+      </div>
+      <div class="contact-line">
+        {% if cv.secondary_email %}<a href="mailto:{{ cv.secondary_email }}">{{ cv.secondary_email }}</a>　|　{% endif %}<a href="{{ cv_url }}">{{ cv_url | replace('https://', '') | replace('http://', '') }}</a>
+      </div>
+    </div>
+  </header>
+
+  <h2>教育背景</h2>
+  <table class="education">
+    {% for item in cv.education %}
+    <tr><td>{{ item.period }}</td><td>{{ item.institution }}</td><td>{{ item.degree }}</td></tr>
+    {% endfor %}
+  </table>
+
+  {% if publications %}
+  <h2>论文发表</h2>
+  <ul class="publications">
+    {% for paper in publications %}
+    <li>
+      <div class="paper-title">{% if paper.url %}<a href="{{ paper.url }}">{{ paper.title }}</a>{% else %}{{ paper.title }}{% endif %}</div>
+      <div><strong>{{ paper.venue }} {{ paper.year }}</strong>{% if paper.ccf %} · CCF-{{ paper.ccf }}{% endif %}{% if paper.poster_demo %} · Poster/Demo{% endif %}{% if paper.status %} · {{ paper.status }}{% endif %}{% if paper.authors %} | {% for author in paper.authors %}{% if author == cv.author_name %}<strong>{{ author }}</strong>{% else %}{{ author }}{% endif %}{% if not loop.last %}, {% endif %}{% endfor %}{% endif %}</div>
+      {% if not paper.authors and paper.citation %}<div class="citation">{{ paper.citation }}</div>{% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+
+  {% if cv.experience %}
+  <h2>校园经历</h2>
+  <ul>
+    {% for item in cv.experience %}
+    <li><div class="entry"><span>{{ item.title }}</span><span class="period">{{ item.period }}</span></div></li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+
+  {% if awards %}
+  <h2>荣誉奖励</h2>
+  <ul>
+    {% for item in awards %}
+    <li><div class="entry"><span>{{ item.title }}</span><span class="period">{{ item.period }}{% if item.location %} · {{ item.location }}{% endif %}</span></div></li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+</body>
+</html>

@@ -182,6 +182,9 @@ exclude:
   - package.json*
   - Rakefile
   - README
+  - CV_WORKFLOW.md
+  - scripts
+  - tests
   - tmp
   - vendor
 keep_files:

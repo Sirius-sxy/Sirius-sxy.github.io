@@ -1,0 +1,60 @@
+# Chinese CV content. Publications and competition awards come from the collections.
+name: 史笑屹
+author_name: Xiaoyi Shi
+affiliation: 清华大学 · 网络科学与网络空间研究院
+photo: images/cv-portrait.png
+phone: +86 17646712889
+secondary_email: shixiaoy20@gmail.com
+
+education:
+  - period: 2024 年 9 月—至今
+    institution: 清华大学网络科学与网络空间研究院
+    degree: 博士研究生
+    period_en: 2024 – 2029 (expected)
+    institution_en: Institute of Network Science and Cyberspace, Tsinghua University
+    degree_en: Ph.D.
+  - period: 2020 年 9 月—2024 年 6 月
+    institution: 清华大学自动化系
+    degree: 工学学士
+    period_en: 2020 – 2024
+    institution_en: Department of Automation, Tsinghua University
+    degree_en: B.S.
+
+# Match the reference CV's research-paper section (books are listed on the website).
+publication_categories: [conferences, manuscripts]
+# Optional short venue names, keyed by the publication's Markdown filename stem.
+publication_overrides:
+  L7LB:
+    venue: INFOCOM Workshops
+  SwitchTAD:
+    venue: Computer Networks
+
+# Entries present in the reference PDF but not yet in _publications/.
+# Once a matching title is added to the collection, the collection takes precedence.
+extra_publications:
+  - title: "ElasticChain: Programmable Switch-Driven Hotspot Mitigation for One-Sided RDMA Key-Value Stores"
+    venue: NSDI
+    year: 2027
+    ccf: A
+    status: 已投稿
+    authors: [Xiaoyi Shi, Jiasheng Zhou, Lin He, Yifan Yang, Jinlong E, Guanyu Li, Ying Liu]
+
+experience:
+  - title: 清华大学自动化系学生科协干事
+    period: 2021 年 7 月—2022 年 7 月
+  - title: 清华大学自动化系自 01 团支部书记
+    period: 2021 年 9 月—2022 年 9 月
+
+# Translations only; award dates continue to come from _awards/.
+award_overrides:
+  IPv6:
+    title: 第三届 IPv6 技术应用创新大赛总决赛一等奖
+    location: 北京
+  CCF-ACNC:
+    title: 第一届 CCF 智算网络挑战赛英伟达赛道二等奖
+    location: 辽宁沈阳
+extra_awards:
+  - title: 清华大学校设二等奖学金
+    date: 2026-01-01
+  - title: 清华大学综合奖学金（优秀社会工作奖）
+    date: 2023-01-01

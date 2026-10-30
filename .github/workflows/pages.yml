@@ -1,0 +1,63 @@
+name: Build website and CV
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: read
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+          cache: pip
+          cache-dependency-path: scripts/requirements-cv.txt
+      - name: Install PDF libraries and fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libpango-1.0-0 libpangoft2-1.0-0 fonts-noto-cjk fonts-liberation
+          python -m pip install -r scripts/requirements-cv.txt
+      - name: Test CV generation
+        run: python -m unittest discover -s tests -v
+      - name: Generate downloadable CV
+        run: python scripts/generate_cv.py
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Build Jekyll website
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
+      - name: Verify PDF is included in the website
+        run: cmp files/Xiaoyi-Shi-CV-zh.pdf _site/files/Xiaoyi-Shi-CV-zh.pdf
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site
+
+  deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
+    needs: build
+    runs-on: ubuntu-24.04
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

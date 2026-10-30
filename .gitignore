@@ -17,3 +17,7 @@ package-lock.json
 vendor/
 .bundle/
 .claude
+
+# Python CV generator caches
+__pycache__/
+*.pyc

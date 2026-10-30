@@ -587,6 +587,46 @@ h1, h2, h3, h4, h5, h6 { letter-spacing: -0.01em; }
 }
 
 /* ----- CV page polish ----------------------------------------------------- */
+.cv-downloads {
+  margin-bottom: 1.5em;
+  padding: 1em 1.2em;
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-md);
+  background: var(--c-card);
+  box-shadow: var(--shadow-xs);
+
+  &__label {
+    margin: 0 0 0.7em;
+    font-weight: 600;
+    color: var(--c-primary);
+
+    span {
+      margin-left: 0.5em;
+      font-size: 0.85em;
+      font-weight: 400;
+      color: var(--c-muted);
+    }
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6em;
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      min-height: 44px;
+      margin: 0;
+      text-decoration: none;
+
+      &:hover { text-decoration: none; }
+    }
+  }
+}
+
 .cv-section {
   margin-top: 1.4em;
   margin-bottom: 0.4em;
