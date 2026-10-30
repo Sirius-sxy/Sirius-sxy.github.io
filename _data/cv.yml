@@ -1,7 +1,10 @@
-# Chinese CV content. Publications and competition awards come from the collections.
+# Shared CV content; *_en fields supply English translations.
+# Publications and competition awards come from the collections.
 name: 史笑屹
+name_en: Xiaoyi Shi
 author_name: Xiaoyi Shi
 affiliation: 清华大学 · 网络科学与网络空间研究院
+affiliation_en: Institute of Network Science and Cyberspace, Tsinghua University
 photo: images/cv-portrait.png
 phone: +86 17646712889
 secondary_email: shixiaoy20@gmail.com
@@ -37,13 +40,18 @@ extra_publications:
     year: 2027
     ccf: A
     status: 已投稿
+    status_en: Submitted
     authors: [Xiaoyi Shi, Jiasheng Zhou, Lin He, Yifan Yang, Jinlong E, Guanyu Li, Ying Liu]
 
 experience:
   - title: 清华大学自动化系学生科协干事
     period: 2021 年 7 月—2022 年 7 月
+    title_en: Member, Student Association for Science and Technology, Department of Automation, Tsinghua University
+    period_en: Jul 2021 – Jul 2022
   - title: 清华大学自动化系自 01 团支部书记
     period: 2021 年 9 月—2022 年 9 月
+    title_en: Secretary, Communist Youth League Branch, Class Zi 01, Department of Automation, Tsinghua University
+    period_en: Sep 2021 – Sep 2022
 
 # Translations only; award dates continue to come from _awards/.
 award_overrides:
@@ -53,8 +61,15 @@ award_overrides:
   CCF-ACNC:
     title: 第一届 CCF 智算网络挑战赛英伟达赛道二等奖
     location: 辽宁沈阳
+award_overrides_en:
+  IPv6:
+    title: First Prize, Finals of the 3rd IPv6 Technology Application Innovation Competition
+  CCF-ACNC:
+    title: Second Prize, NVIDIA Track, 1st CCF AI-Computing Network Challenge
 extra_awards:
   - title: 清华大学校设二等奖学金
+    title_en: Second-Class University Scholarship, Tsinghua University
     date: 2026-01-01
   - title: 清华大学综合奖学金（优秀社会工作奖）
+    title_en: Comprehensive Scholarship (Outstanding Student Service), Tsinghua University
     date: 2023-01-01

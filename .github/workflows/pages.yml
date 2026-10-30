@@ -36,8 +36,10 @@ jobs:
           python -m pip_audit -r scripts/requirements-cv.txt --progress-spinner off
       - name: Test CV generation
         run: python -m unittest discover -s tests -v
-      - name: Generate downloadable CV
-        run: python scripts/generate_cv.py
+      - name: Generate downloadable CVs
+        run: |
+          python scripts/generate_cv.py
+          python scripts/generate_cv.py --language en
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Build Jekyll website
@@ -45,8 +47,10 @@ jobs:
         with:
           source: ./
           destination: ./_site
-      - name: Verify PDF is included in the website
-        run: cmp files/Xiaoyi-Shi-CV-zh.pdf _site/files/Xiaoyi-Shi-CV-zh.pdf
+      - name: Verify both PDFs are included in the website
+        run: |
+          cmp files/Xiaoyi-Shi-CV-zh.pdf _site/files/Xiaoyi-Shi-CV-zh.pdf
+          cmp files/Xiaoyi-Shi-CV-en.pdf _site/files/Xiaoyi-Shi-CV-en.pdf
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./_site

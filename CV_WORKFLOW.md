@@ -1,19 +1,21 @@
 # CV PDF 自动生成
 
-CV 页面 `/cv/` 提供中文版 PDF 的预览和下载，文件路径为
-`/files/Xiaoyi-Shi-CV-zh.pdf`。版式参考原有中文简历，使用 A4、照片、黑白分节横线，
+CV 页面 `/cv/` 底部提供中英文 PDF 的预览和下载，文件路径分别为
+`/files/Xiaoyi-Shi-CV-zh.pdf` 和 `/files/Xiaoyi-Shi-CV-en.pdf`。版式参考原有中文简历，使用 A4、照片、黑白分节横线，
 论文中的本人姓名加粗。中文字体嵌入 PDF，文本可选中、复制，论文标题可点击。
 内容增长时自动分页，不裁剪条目。
 
 ## 内容维护
 
-- `_data/cv.yml`：中文姓名、联系方式、教育背景、校园经历，以及网站尚未收录的条目。
-  教育背景的中英文分别供 PDF 和网页使用；主要邮箱来自 `_config.yml` 的 `author.email`。
+- `_data/cv.yml`：姓名、联系方式、教育背景、校园经历，以及网站尚未收录的条目。
+  `name_en`、`affiliation_en` 和条目中的 `title_en`、`period_en`、`status_en` 等字段用于英文版；
+  教育背景的英文也供网页使用；主要邮箱来自 `_config.yml` 的 `author.email`。
 - `_publications/*.md`：自动读取论文标题、日期、会议信息、评级和录用状态。
   作者和发表年份优先读取已有 `bibtex`；无 BibTeX 时可提供 `authors` 列表，
   或使用已有 `citation`。`published: false` 沿用本站约定，显示“已录用，待发表”；
-  其他状态可以用 `cv_status` 指定。
-- `_awards/*.md`：自动读取奖励和日期。中文译名可以在 `cv.yml` 的 `award_overrides` 中配置。
+  英文版对应显示 “Accepted, to appear”。其他状态可以用 `cv_status` 和 `cv_status_en` 分别指定。
+- `_awards/*.md`：自动读取奖励和日期。中文译名可以在 `cv.yml` 的 `award_overrides` 中配置；
+  英文版默认使用集合中的英文标题和地点，可通过 `award_overrides_en` 调整措辞。
 - `images/cv-portrait.png`：从提供的模板 PDF 提取的照片。
 - `scripts/cv/template.html`：独立的 PDF 排版模板，网页样式不会影响 PDF。
 
@@ -40,6 +42,7 @@ Ubuntu 可安装 `libpango-1.0-0 libpangoft2-1.0-0 fonts-noto-cjk fonts-liberati
 
 ```bash
 python scripts/generate_cv.py
+python scripts/generate_cv.py --language en
 python -m unittest discover -s tests -v
 bundle exec jekyll build
 ```
@@ -48,14 +51,15 @@ bundle exec jekyll build
 
 ```bash
 python scripts/generate_cv.py --output /tmp/cv.pdf --html-output /tmp/cv.html
+python scripts/generate_cv.py --language en --output /tmp/cv-en.pdf --html-output /tmp/cv-en.html
 ```
 
-仓库内保留一份已生成的 PDF，因此普通 Jekyll 本地构建也可预览、下载。
-若只使用本地 Jekyll，需要先运行生成脚本更新这份 PDF。
+仓库内保留中英文已生成的 PDF，因此普通 Jekyll 本地构建也可预览、下载。
+若只使用本地 Jekyll，需要先分别运行两条生成命令更新这两份 PDF。
 
 ## GitHub Pages 自动更新
 
-`.github/workflows/pages.yml` 在推送到 `master` 时运行：依赖安全审计 → 测试 → 生成 PDF → 构建 Jekyll → 发布网站。
+`.github/workflows/pages.yml` 在推送到 `master` 时运行：依赖安全审计 → 测试 → 生成中英文 PDF → 构建 Jekyll → 发布网站。
 PDF 和网站在同一次部署中更新，不需要提交机器人生成的 PDF，也不需要额外的令牌。
 Pull Request 仅构建和测试，不发布；也可在 Actions 中手动运行。
 

@@ -1,8 +1,8 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="{{ labels.lang }}">
 <head>
   <meta charset="utf-8">
-  <title>{{ cv.name }} — 中文简历</title>
+  <title>{{ cv.name }} — {{ labels.title }}</title>
   <meta name="author" content="{{ cv.name }}">
   <style>
     @page { size: A4; margin: 12mm 20mm 15mm; }
@@ -49,6 +49,12 @@
     .entry { display: flex; justify-content: space-between; gap: 3mm; }
     .period { white-space: nowrap; text-align: right; }
     .citation { overflow-wrap: anywhere; }
+    html:lang(en) header { margin-bottom: 3mm; }
+    html:lang(en) h2 {
+      font-family: Arial, "Liberation Sans", sans-serif;
+      margin-top: 2mm;
+      margin-bottom: 1.5mm;
+    }
   </style>
 </head>
 <body>
@@ -66,7 +72,7 @@
     </div>
   </header>
 
-  <h2>教育背景</h2>
+  <h2>{{ labels.education }}</h2>
   <table class="education">
     {% for item in cv.education %}
     <tr><td>{{ item.period }}</td><td>{{ item.institution }}</td><td>{{ item.degree }}</td></tr>
@@ -74,7 +80,7 @@
   </table>
 
   {% if publications %}
-  <h2>论文发表</h2>
+  <h2>{{ labels.publications }}</h2>
   <ul class="publications">
     {% for paper in publications %}
     <li>
@@ -87,7 +93,7 @@
   {% endif %}
 
   {% if cv.experience %}
-  <h2>校园经历</h2>
+  <h2>{{ labels.experience }}</h2>
   <ul>
     {% for item in cv.experience %}
     <li><div class="entry"><span>{{ item.title }}</span><span class="period">{{ item.period }}</span></div></li>
@@ -96,7 +102,7 @@
   {% endif %}
 
   {% if awards %}
-  <h2>荣誉奖励</h2>
+  <h2>{{ labels.awards }}</h2>
   <ul>
     {% for item in awards %}
     <li><div class="entry"><span>{{ item.title }}</span><span class="period">{{ item.period }}{% if item.location %} · {{ item.location }}{% endif %}</span></div></li>

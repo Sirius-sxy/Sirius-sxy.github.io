@@ -31,14 +31,20 @@ redirect_from:
   {% include archive-single-cv.html %}
 {% endfor %}
 
+{% assign cv_languages = "English,Chinese" | split: "," %}
+{% for language in cv_languages %}
+{% if language == "English" %}{% assign language_code = "en" %}{% else %}{% assign language_code = "zh" %}{% endif %}
+{% assign cv_filename = "Xiaoyi-Shi-CV-" | append: language_code | append: ".pdf" %}
+{% assign cv_path = "/files/" | append: cv_filename %}
 <div class="cv-downloads">
-  <p class="cv-downloads__label">Chinese CV <span>PDF</span></p>
+  <p class="cv-downloads__label">{{ language }} CV <span>PDF</span></p>
   <div class="cv-downloads__actions">
-    <a class="btn btn--primary" href="{{ '/files/Xiaoyi-Shi-CV-zh.pdf' | relative_url }}" target="_blank" rel="noopener">
+    <a class="btn btn--primary" href="{{ cv_path | relative_url }}" target="_blank" rel="noopener" aria-label="View {{ language }} CV (PDF)">
       <i class="fas fa-file-pdf" aria-hidden="true"></i> View PDF
     </a>
-    <a class="btn" href="{{ '/files/Xiaoyi-Shi-CV-zh.pdf' | relative_url }}" download="Xiaoyi-Shi-CV-zh.pdf">
+    <a class="btn" href="{{ cv_path | relative_url }}" download="{{ cv_filename }}" aria-label="Download {{ language }} CV (PDF)">
       <i class="fas fa-download" aria-hidden="true"></i> Download PDF
     </a>
   </div>
 </div>
+{% endfor %}

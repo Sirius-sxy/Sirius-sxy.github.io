@@ -2,6 +2,8 @@
 
 from pathlib import Path
 import shutil
+import subprocess
+import sys
 import tempfile
 import unittest
 
@@ -27,13 +29,19 @@ class CVTests(unittest.TestCase):
             "author": {"email": "shi-xy24@mails.tsinghua.edu.cn"},
         }), encoding="utf-8")
         (self.root / "_data/cv.yml").write_text(yaml.safe_dump({
-            "name": "史笑屹", "author_name": "Xiaoyi Shi", "affiliation": "清华大学",
+            "name": "史笑屹", "name_en": "Xiaoyi Shi", "author_name": "Xiaoyi Shi",
+            "affiliation": "清华大学", "affiliation_en": "Tsinghua University",
             "photo": "images/cv-portrait.png", "publication_categories": ["conferences", "manuscripts"],
-            "education": [{"period": "2024 年—至今", "institution": "清华大学", "degree": "博士研究生"}],
-            "experience": [{"title": "学生科协干事", "period": "2021 年—2022 年"}],
+            "education": [{"period": "2024 年—至今", "institution": "清华大学", "degree": "博士研究生",
+                           "period_en": "2024 – 2029 (expected)", "institution_en": "Tsinghua University",
+                           "degree_en": "Ph.D."}],
+            "experience": [{"title": "学生科协干事", "period": "2021 年—2022 年",
+                            "title_en": "Student Association Member", "period_en": "2021 – 2022"}],
             "extra_publications": [{"title": "ElasticChain: A Submitted Paper", "venue": "NSDI",
-                                    "year": 2027, "status": "已投稿", "authors": ["Xiaoyi Shi"]}],
-            "extra_awards": [{"title": "清华大学综合奖学金", "date": "2026-01-01"}],
+                                    "year": 2027, "status": "已投稿", "status_en": "Submitted",
+                                    "authors": ["Xiaoyi Shi"]}],
+            "extra_awards": [{"title": "清华大学综合奖学金", "title_en": "Comprehensive Scholarship",
+                              "date": "2026-01-01"}],
             "award_overrides": {"award": {"title": "竞赛一等奖", "location": "北京"}},
         }, allow_unicode=True), encoding="utf-8")
         self.add_record("_publications", "accepted.md", {
@@ -141,6 +149,75 @@ class CVTests(unittest.TestCase):
         with self.assertRaises(FileNotFoundError):
             build_context(self.root)
 
+    def test_english_translations_preserve_shared_records_and_chinese(self):
+        english = build_context(self.root, "en")
+        chinese = build_context(self.root)
+        self.assertEqual(english["cv"]["name"], "Xiaoyi Shi")
+        self.assertEqual(english["cv"]["education"][0]["degree"], "Ph.D.")
+        self.assertEqual(english["cv"]["experience"][0]["title"], "Student Association Member")
+        self.assertEqual(english["publications"][0]["status"], "Submitted")
+        self.assertEqual(english["publications"][1]["status"], "Accepted, to appear")
+        self.assertEqual(english["awards"][0]["title"], "Comprehensive Scholarship")
+        self.assertEqual(english["awards"][1]["title"], "Competition First Prize")
+        self.assertEqual(english["awards"][1]["location"], "Beijing, China")
+        self.assertEqual(english["awards"][1]["period"], "Dec 2025")
+        self.assertEqual(chinese["cv"]["name"], "史笑屹")
+        self.assertEqual(chinese["awards"][1]["title"], "竞赛一等奖")
+        for en, zh in zip(english["publications"], chinese["publications"], strict=True):
+            for key in ("title", "authors", "venue", "year", "ccf", "url"):
+                self.assertEqual(en.get(key), zh.get(key))
+        html = render_html(self.root, "en")
+        self.assertIn('<html lang="en">', html)
+        self.assertIn("<strong>Xiaoyi Shi</strong>", html)
+        self.assertNotRegex(html, r"[\u3400-\u9fff]")
+
+    def test_english_sync_status_and_award_overrides(self):
+        self.add_record("_publications", "new.md", {
+            "title": "New <paper>", "date": "2028-01-01", "category": "conferences",
+            "venue": "CONF", "cv_status": "在审", "cv_status_en": "Under review",
+        })
+        self.add_record("_awards", "new.md", {
+            "title": "New Award", "date": "2028-01-01", "location": "London",
+        })
+        path = self.root / "_data/cv.yml"
+        cv = yaml.safe_load(path.read_text())
+        cv["award_overrides_en"] = {"award": {"title": "First Prize, NVIDIA Track"}}
+        path.write_text(yaml.safe_dump(cv, allow_unicode=True), encoding="utf-8")
+        english = build_context(self.root, "en")
+        self.assertEqual(english["publications"][0]["status"], "Under review")
+        self.assertEqual(english["awards"][0]["title"], "New Award")
+        self.assertEqual(english["awards"][-1]["title"], "First Prize, NVIDIA Track")
+        self.assertEqual(english["awards"][-1]["location"], "Beijing, China")
+        self.assertIn("New &lt;paper&gt;", render_html(self.root, "en"))
+        self.assertEqual(build_context(self.root)["awards"][-1]["title"], "竞赛一等奖")
+
+    def test_english_cli_writes_separate_pdf_with_complete_text(self):
+        chinese = self.root / "files/Xiaoyi-Shi-CV-zh.pdf"
+        chinese.parent.mkdir()
+        chinese.write_bytes(b"Existing Chinese PDF")
+        html_path = self.root / "preview/cv-en.html"
+        subprocess.run([
+            sys.executable, str(ROOT / "scripts/generate_cv.py"), "--repo-root", str(self.root),
+            "--language", "en", "--html-output", str(html_path),
+        ], check=True, capture_output=True, text=True)
+        self.assertEqual(chinese.read_bytes(), b"Existing Chinese PDF")
+        self.assertIn('<html lang="en">', html_path.read_text())
+        pdf = PdfReader(self.root / "files/Xiaoyi-Shi-CV-en.pdf")
+        text = " ".join(" ".join(page.extract_text() for page in pdf.pages).split())
+        for phrase in ("Xiaoyi Shi", "Education", "Publications and Manuscripts", "Campus Service",
+                       "Honors and Awards", "Accepted, to appear", "Submitted", "Comprehensive Scholarship"):
+            self.assertIn(phrase, text)
+        for paper in build_context(self.root, "en")["publications"]:
+            self.assertIn(paper["title"], text)
+        self.assertNotRegex(text, r"[\u3400-\u9fff\ufffd]")
+        self.assertEqual(len(pdf.pages), 1)
+        self.assertAlmostEqual(float(pdf.pages[0].mediabox.width), 595.28, delta=1)
+        self.assertAlmostEqual(float(pdf.pages[0].mediabox.height), 841.89, delta=1)
+
+    def test_unsupported_language_is_rejected(self):
+        with self.assertRaisesRegex(ValueError, "Unsupported CV language"):
+            build_context(self.root, "fr")
+
     def test_pdf_has_a4_pages_chinese_and_every_publication(self):
         output = self.root / "out/cv.pdf"
         pages = generate_pdf(self.root, output)
@@ -176,12 +253,14 @@ class CVTests(unittest.TestCase):
                 "category": "conferences", "venue": "Example Conference (CONF 2028)",
                 "citation": "A complete citation retained in the generated document. " * 3,
             })
-        output = self.root / "long.pdf"
-        self.assertGreater(generate_pdf(self.root, output), 1)
-        text = " ".join(page.extract_text() for page in PdfReader(output).pages)
-        for index in range(25):
-            self.assertIn(f"Future research entry {index:02d}", text)
-        self.assertIn("荣誉奖励", "".join(text.split()))
+        for language, heading in (("zh", "荣誉奖励"), ("en", "HonorsandAwards")):
+            with self.subTest(language=language):
+                output = self.root / f"long-{language}.pdf"
+                self.assertGreater(generate_pdf(self.root, output, language=language), 1)
+                text = " ".join(page.extract_text() for page in PdfReader(output).pages)
+                for index in range(25):
+                    self.assertIn(f"Future research entry {index:02d}", text)
+                self.assertIn(heading, "".join(text.split()))
 
 
 if __name__ == "__main__":

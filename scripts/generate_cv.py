@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""Generate the downloadable Chinese CV from the website's source data.
+"""Generate downloadable Chinese and English CVs from the website's source data.
 
     python scripts/generate_cv.py
+    python scripts/generate_cv.py --language en
     python scripts/generate_cv.py --output /tmp/cv.pdf --html-output /tmp/cv.html
 """
 
@@ -19,6 +20,25 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
+LABELS = {
+    "zh": {
+        "lang": "zh-CN", "title": "中文简历", "education": "教育背景",
+        "publications": "论文发表", "experience": "校园经历", "awards": "荣誉奖励",
+        "accepted": "已录用，待发表",
+    },
+    "en": {
+        "lang": "en", "title": "Curriculum Vitae", "education": "Education",
+        "publications": "Publications and Manuscripts", "experience": "Campus Service",
+        "awards": "Honors and Awards", "accepted": "Accepted, to appear",
+    },
+}
+MONTHS_EN = ("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+
+
+def localized_fields(item: dict, language: str) -> dict:
+    """Overlay explicit translations without changing the shared source record."""
+    suffix = f"_{language}"
+    return {**item, **{key.removesuffix(suffix): value for key, value in item.items() if key.endswith(suffix)}}
 
 
 def read_yaml(path: Path) -> dict:
@@ -59,7 +79,9 @@ def title_key(title: str) -> str:
     return " ".join(title.split()).casefold()
 
 
-def publication(item: dict, overrides: dict, site_url: str) -> dict:
+def publication(item: dict, overrides: dict, site_url: str, language: str = "zh") -> dict:
+    item = localized_fields(item, language)
+    overrides = localized_fields(overrides, language)
     entries = bibtexparser.parse_string(
         item.get("bibtex", ""),
         append_middleware=[SeparateCoAuthors(), SplitNameParts(), MergeNameParts(style="first")],
@@ -78,14 +100,21 @@ def publication(item: dict, overrides: dict, site_url: str) -> dict:
         "citation": item.get("citation", ""),
         "ccf": str(item.get("ccf", "")).removeprefix("CCF-"),
         "poster_demo": item.get("poster_demo", False),
-        "status": item.get("cv_status", "已录用，待发表" if item.get("published") is False else ""),
+        "status": item.get("cv_status", LABELS[language]["accepted"] if item.get("published") is False else ""),
         "url": link,
     }
 
 
-def build_context(root: Path) -> dict:
+def build_context(root: Path, language: str = "zh") -> dict:
+    if language not in LABELS:
+        raise ValueError(f"Unsupported CV language: {language}")
     config = read_yaml(root / "_config.yml")
-    cv = read_yaml(root / "_data/cv.yml")
+    source = read_yaml(root / "_data/cv.yml")
+    cv = localized_fields(source, language)
+    # Collection award metadata is already English; Chinese overrides are opt-in.
+    cv["award_overrides"] = source.get("award_overrides_en" if language == "en" else "award_overrides", {})
+    for key in ("education", "experience", "extra_publications", "extra_awards"):
+        cv[key] = [localized_fields(item, language) for item in cv.get(key, [])]
     site_url = config["url"].rstrip("/") + "/" + config.get("baseurl", "").strip("/")
     site_url = site_url.rstrip("/")
     collection = read_collection(root / "_publications")
@@ -95,7 +124,7 @@ def build_context(root: Path) -> dict:
     ]
     publications = [
         (parse_date(item["date"]), publication(
-            item, cv.get("publication_overrides", {}).get(item["slug"], {}), site_url
+            item, cv.get("publication_overrides", {}).get(item["slug"], {}), site_url, language
         ))
         for item in records
     ]
@@ -117,12 +146,16 @@ def build_context(root: Path) -> dict:
     awards.sort(key=lambda item: parse_date(item["date"]), reverse=True)
     for item in awards:
         when = parse_date(item["date"])
-        item["period"] = f"{when.year} 年 {when.month} 月"
+        item["period"] = (
+            f"{MONTHS_EN[when.month - 1]} {when.year}" if language == "en"
+            else f"{when.year} 年 {when.month} 月"
+        )
 
     photo = root / cv["photo"] if cv.get("photo") else None
     if photo and not photo.is_file():
         raise FileNotFoundError(f"CV portrait not found: {photo}")
     return {
+        "labels": LABELS[language],
         "cv": cv,
         "email": config["author"]["email"],
         "cv_url": site_url + "/cv/",
@@ -132,21 +165,21 @@ def build_context(root: Path) -> dict:
     }
 
 
-def render_html(root: Path) -> str:
+def render_html(root: Path, language: str = "zh") -> str:
     env = Environment(
         loader=FileSystemLoader(root / "scripts/cv"),
         autoescape=select_autoescape(["html"]),
         trim_blocks=True,
         lstrip_blocks=True,
     )
-    return env.get_template("template.html").render(**build_context(root))
+    return env.get_template("template.html").render(**build_context(root, language))
 
 
-def generate_pdf(root: Path, output: Path, html_output: Path | None = None) -> int:
+def generate_pdf(root: Path, output: Path, html_output: Path | None = None, language: str = "zh") -> int:
     # Keep data-only tests usable without native Pango libraries.
     from weasyprint import HTML
 
-    html = render_html(root)
+    html = render_html(root, language)
     document = HTML(string=html, base_url=str(root)).render()
     # Render to memory first so a failed build never truncates the existing PDF.
     pdf = document.write_pdf()
@@ -161,12 +194,13 @@ def generate_pdf(root: Path, output: Path, html_output: Path | None = None) -> i
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--repo-root", type=Path, default=ROOT)
-    parser.add_argument("--output", type=Path, help="Defaults to files/Xiaoyi-Shi-CV-zh.pdf")
+    parser.add_argument("--language", choices=LABELS, default="zh", help="CV language (default: zh)")
+    parser.add_argument("--output", type=Path, help="Defaults to files/Xiaoyi-Shi-CV-<language>.pdf")
     parser.add_argument("--html-output", type=Path, help="Optional HTML for inspecting the print layout")
     args = parser.parse_args()
     root = args.repo_root.resolve()
-    output = args.output or root / "files/Xiaoyi-Shi-CV-zh.pdf"
-    pages = generate_pdf(root, output, args.html_output)
+    output = args.output or root / f"files/Xiaoyi-Shi-CV-{args.language}.pdf"
+    pages = generate_pdf(root, output, args.html_output, args.language)
     print(f"Generated {output} ({pages} A4 page(s))")
 
 
