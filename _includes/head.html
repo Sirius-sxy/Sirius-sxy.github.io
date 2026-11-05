@@ -4,6 +4,19 @@
 
 {% include seo.html %}
 
+{% if page.translation_url %}
+  {% if page_locale == 'zh-CN' %}
+    {% assign english_url = page.translation_url %}
+    {% assign chinese_url = page.url %}
+  {% else %}
+    {% assign english_url = page.url %}
+    {% assign chinese_url = page.translation_url %}
+  {% endif %}
+  <link rel="alternate" hreflang="en" href="{{ english_url | absolute_url }}">
+  <link rel="alternate" hreflang="zh-CN" href="{{ chinese_url | absolute_url }}">
+  <link rel="alternate" hreflang="x-default" href="{{ english_url | absolute_url }}">
+{% endif %}
+
 <link href="{% if site.atom_feed.path %}{{ site.atom_feed.path }}{% else %}{{ base_path }}/feed.xml{% endif %}" type="application/atom+xml" rel="alternate" title="{{ site.title }} Feed">
 
 <!-- http://t.co/dKP3o1e -->

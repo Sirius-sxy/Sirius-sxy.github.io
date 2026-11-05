@@ -1,0 +1,79 @@
+en-US:
+  home: /
+  switch_label: 中文
+  switch_lang: zh-CN
+  switch_home: /zh/
+  switch_description: 切换到中文
+  navigation: Main navigation
+  menu: Toggle navigation
+  follow: Follow
+  selected_publications: Selected Publications
+  all_publications: View all publications
+  scholar_intro: You can also find my articles on
+  scholar_profile: my Google Scholar profile
+  education: Education
+  publications: Publications
+  awards: Awards
+  english_cv: English CV
+  chinese_cv: Chinese CV
+  view_pdf: View PDF
+  download_pdf: Download PDF
+  published_in: Published in
+  to_appear_in: To appear in
+  code: Code
+  slides: Slides
+  poster: Poster
+  reviews: Reviews
+  cite: Cite
+  citation: "Citation:"
+  permalink: Permalink
+  date_format: "%B %d, %Y"
+  month_format: "%B %Y"
+  sitemap: Sitemap
+  last_updated: Site last updated
+  fork_of: a fork of
+
+zh-CN:
+  home: /zh/
+  site_title: 史笑屹 / Sirius
+  description: 清华大学网络科学与网络空间研究院博士三年级学生，研究方向为可编程网络与大语言模型。
+  author_name: 史笑屹
+  author_bio: 清华大学博士三年级学生
+  author_location: 中国北京
+  author_employer: 清华大学
+  switch_label: English
+  switch_lang: en
+  switch_home: /
+  switch_description: Switch to English
+  navigation: 主导航
+  menu: 展开或收起导航
+  follow: 联系方式
+  selected_publications: 代表性论文
+  all_publications: 查看全部论文
+  scholar_intro: 更多论文信息请参见
+  scholar_profile: 我的 Google Scholar 主页
+  education: 教育背景
+  publications: 论文发表
+  awards: 荣誉奖励
+  english_cv: 英文简历
+  chinese_cv: 中文简历
+  view_pdf: 查看 PDF
+  download_pdf: 下载 PDF
+  published_in: 发表于
+  to_appear_in: 待发表于
+  code: 代码
+  slides: 幻灯片
+  poster: 海报
+  reviews: 评审意见
+  cite: 引用
+  citation: "引用格式："
+  permalink: 永久链接
+  date_format: "%Y 年 %-m 月 %-d 日"
+  month_format: "%Y 年 %-m 月"
+  sitemap: 网站地图
+  last_updated: 网站最后更新于
+  fork_of: 基于
+  categories:
+    books: 著作
+    manuscripts: 期刊论文
+    conferences: 会议论文

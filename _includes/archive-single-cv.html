@@ -1,9 +1,11 @@
 {% include base_path %}
+{% include locale.html %}
+{% include localized-entry.html %}
 
 {% if post.id %}
-  {% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" %}
+  {% assign title = entry_title | markdownify | remove: "<p>" | remove: "</p>" %}
 {% else %}
-  {% assign title = post.title %}
+  {% assign title = entry_title %}
 {% endif %}
 
 <div class="list__item">
@@ -11,7 +13,7 @@
     <h3 class="archive__item-title" itemprop="headline">
       {% if post.link %}
         <a href="{{ post.link }}">{{ title }}</a>
-        <a href="{{ base_path }}{{ post.url }}" rel="permalink"><i class="fa fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
+        <a href="{{ base_path }}{{ post.url }}" rel="permalink"><i class="fa fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">{{ i18n.permalink }}</span></a>
       {% else %}
         <a href="{{ base_path }}{{ post.url }}" rel="permalink">{{ title }}</a>
       {% endif %}
@@ -20,7 +22,7 @@
     {% if post.collection == 'publications' %}
       {% if post.venue %}
         <p class="pub-venue">
-          {% unless post.published %}<em>To appear in</em>{% else %}<em>Published in</em>{% endunless %}
+          {% unless post.published %}<em>{{ i18n.to_appear_in }}</em>{% else %}<em>{{ i18n.published_in }}</em>{% endunless %}
           <span class="pub-venue__name">{{ post.venue }}</span>,
           <span class="pub-venue__year">{{ post.date | default: "1900-01-01" | date: "%Y" }}</span>
         </p>
@@ -53,9 +55,9 @@
 
     {% elsif post.collection == 'awards' %}
       <p class="cv-award-meta">
-        {% if post.location %}{{ post.location }}{% endif %}
+        {% if post.location %}{{ entry_location }}{% endif %}
         {% if post.location and post.date %} &middot; {% endif %}
-        {% if post.date %}{{ post.date | date: "%B %Y" }}{% endif %}
+        {% if post.date %}{{ post.date | date: i18n.month_format }}{% endif %}
       </p>
 
     {% elsif post.venue %}

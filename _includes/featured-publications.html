@@ -1,0 +1,23 @@
+{% include locale.html %}
+<h2 class="home-section-title">{{ i18n.selected_publications }}</h2>
+
+<div class="featured-pubs">
+  {%- comment -%}
+    Show up to four CCF-A papers, most-recent-first. If no CCF-A
+    entries exist, fall back to the most-recent published papers so the
+    section never looks empty.
+  {%- endcomment -%}
+  {% assign ccf_a_pubs = site.publications | where: "ccf", "A" | sort: "date" | reverse %}
+  {% if ccf_a_pubs.size >= 1 %}
+    {% for post in ccf_a_pubs limit: 4 %}
+      {% include archive-single.html %}
+    {% endfor %}
+  {% else %}
+    {% assign recent_pubs = site.publications | sort: "date" | reverse %}
+    {% for post in recent_pubs limit: 4 %}
+      {% include archive-single.html %}
+    {% endfor %}
+  {% endif %}
+</div>
+
+<a class="featured-pubs__more" href="{{ i18n.home | append: "publications/" | relative_url }}">{{ i18n.all_publications }}</a>

@@ -3,12 +3,8 @@ layout: archive
 title: "Awards"
 permalink: /awards/
 author_profile: true
+lang: en-US
+translation_url: /zh/awards/
 ---
 
-{% include base_path %}
-
-{% for post in site.awards reversed %}
-  {% include archive-single.html %}
-{% endfor %}
-
-
+{% include awards-list.html %}

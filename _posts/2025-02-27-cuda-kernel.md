@@ -1,4 +1,5 @@
 ---
+title_zh: "CUDA 学习笔记（二）：在 PyTorch 中编写核函数"
 title: 'My Cuda Note 2: Build a kernel in PyTorch'
 date: 2025-02-24
 permalink: /posts/2025/02/cuda/note/kernel

@@ -1,4 +1,6 @@
 {% include base_path %}
+{% include locale.html %}
+{% include localized-entry.html %}
 
 {% if post.header.teaser %}
   {% capture teaser %}{{ post.header.teaser }}{% endcapture %}
@@ -7,9 +9,9 @@
 {% endif %}
 
 {% if post.id %}
-  {% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" %}
+  {% assign title = entry_title | markdownify | remove: "<p>" | remove: "</p>" %}
 {% else %}
-  {% assign title = post.title %}
+  {% assign title = entry_title %}
 {% endif %}
 
 <div class="{{ include.type | default: "list" }}__item">
@@ -28,7 +30,7 @@
 
     <h2 class="archive__item-title" itemprop="headline">
       {% if post.link %}
-        <a href="{{ post.link }}">{{ title }}</a> <a href="{{ base_path }}{{ post.url }}" rel="permalink"><i class="fa fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
+        <a href="{{ post.link }}">{{ title }}</a> <a href="{{ base_path }}{{ post.url }}" rel="permalink"><i class="fa fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">{{ i18n.permalink }}</span></a>
       {% else %}
         <a href="{{ base_path }}{{ post.url }}" rel="permalink">{{ title }}</a>
       {% endif %}
@@ -42,7 +44,7 @@
           <p> {{ post.type }}, <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }} </p>
         {% elsif post.collection == 'publications' %}
           <p class="pub-venue">
-            {% unless post.published %}<em>To appear in</em>{% else %}<em>Published in</em>{% endunless %}
+            {% unless post.published %}<em>{{ i18n.to_appear_in }}</em>{% else %}<em>{{ i18n.published_in }}</em>{% endunless %}
             <span class="pub-venue__name">{{ post.venue }}</span>,
             <span class="pub-venue__year">{{ post.date | default: "1900-01-01" | date: "%Y" }}</span>
           </p>
@@ -65,7 +67,7 @@
             {% endif %}
           </div>
         {% elsif post.date %}
-         <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].date_label | default: "Published:" }}</strong> <time datetime="{{ post.date | default: "1900-01-01" | date_to_xmlschema }}">{{ post.date | default: "1900-01-01" | date: "%B %d, %Y" }}</time></p>
+         <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> {{ ui_text.date_label | default: "Published:" }}</strong> <time datetime="{{ post.date | default: "1900-01-01" | date_to_xmlschema }}">{{ post.date | default: "1900-01-01" | date: i18n.date_format }}</time></p>
         {% endif %}
 
     <!--
@@ -78,22 +80,22 @@
 
     <div class="pub-btn-group">
       {% if post.paperurl %}
-        <a href="{{ post.paperurl }}" class="btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-file-pdf"></i> Download PDF</a>
+        <a href="{{ post.paperurl }}" class="btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-file-pdf"></i> {{ i18n.download_pdf }}</a>
       {% endif %}
       {% if post.codeurl or post.repogiturl %}
-        <a href="{{ post.codeurl | default: post.repogiturl }}" class="btn" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Code {% if post.repolicense %}({{ post.repolicense }}){% endif %}</a>
+        <a href="{{ post.codeurl | default: post.repogiturl }}" class="btn" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> {{ i18n.code }} {% if post.repolicense %}({{ post.repolicense }}){% endif %}</a>
       {% endif %}
       {% if post.slidesurl %}
-        <a href="{{ post.slidesurl }}" class="btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-file-powerpoint"></i> Slides</a>
+        <a href="{{ post.slidesurl }}" class="btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-file-powerpoint"></i> {{ i18n.slides }}</a>
       {% endif %}
       {% if post.posterurl %}
-        <a href="{{ post.posterurl }}" class="btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-image"></i> Poster</a>
+        <a href="{{ post.posterurl }}" class="btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-image"></i> {{ i18n.poster }}</a>
       {% endif %}
       {% if post.reviewsurl %}
-        <a href="{{ post.reviewsurl }}" class="btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-comments"></i> Reviews</a>
+        <a href="{{ post.reviewsurl }}" class="btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-comments"></i> {{ i18n.reviews }}</a>
       {% endif %}
       {% if post.citation or post.bibtex or post.apa %}
-        <button class="btn citation-toggle" onclick="var box = this.parentElement.nextElementSibling; box.style.display = box.style.display === 'none' ? 'block' : 'none';"><i class="fas fa-quote-right"></i> Cite</button>
+        <button class="btn citation-toggle" onclick="var box = this.parentElement.nextElementSibling; box.style.display = box.style.display === 'none' ? 'block' : 'none';"><i class="fas fa-quote-right"></i> {{ i18n.cite }}</button>
       {% endif %}
     </div>
 
@@ -101,7 +103,7 @@
     <div class="citation-box" style="display: none;">
       {% if post.citation or post.apa %}
       <div class="citation-content">
-        <strong>Citation:</strong>
+        <strong>{{ i18n.citation }}</strong>
         <p style="margin: 5px 0;">{{ post.citation | default: post.apa }}</p>
       </div>
       {% endif %}

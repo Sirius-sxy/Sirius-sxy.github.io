@@ -1,0 +1,11 @@
+{%- assign entry_title = post.title -%}
+{%- assign entry_location = post.location -%}
+{%- if page_locale == 'zh-CN' -%}
+  {%- assign entry_title = post.title_zh | default: post.title -%}
+  {%- if post.collection == 'awards' -%}
+    {%- assign award_key = post.path | split: '/' | last | remove: '.md' -%}
+    {%- assign award_translation = site.data.cv.award_overrides[award_key] -%}
+    {%- assign entry_title = award_translation.title | default: entry_title -%}
+    {%- assign entry_location = award_translation.location | default: post.location -%}
+  {%- endif -%}
+{%- endif -%}

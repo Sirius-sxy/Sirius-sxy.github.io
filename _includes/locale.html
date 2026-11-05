@@ -1,0 +1,4 @@
+{%- assign page_locale = page.lang | default: site.locale -%}
+{%- assign i18n = site.data.languages[page_locale] | default: site.data.languages.en-US -%}
+{%- assign ui_text = site.data.ui-text[page_locale] | default: site.data.ui-text.en-US -%}
+{%- assign localized_site_title = i18n.site_title | default: site.title -%}

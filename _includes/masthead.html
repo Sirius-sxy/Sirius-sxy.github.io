@@ -1,23 +1,31 @@
 {% include base_path %}
+{% include locale.html %}
 
 <div class="masthead">
   <div class="masthead__inner-wrap">
     <div class="masthead__menu">
-      <nav id="site-nav" class="greedy-nav">
-        <button><div class="navicon"></div></button>
+      <nav id="site-nav" class="greedy-nav" aria-label="{{ i18n.navigation }}">
+        <button aria-label="{{ i18n.menu }}"><div class="navicon"></div></button>
         <ul class="visible-links">
-          <li class="masthead__menu-item masthead__menu-item--lg"><a href="{{ base_path }}/">{{ site.title }}</a></li>
+          <li class="masthead__menu-item masthead__menu-item--lg"><a href="{{ i18n.home | relative_url }}">{{ localized_site_title }}</a></li>
           {% for link in site.data.navigation.main %}
-            {% if link.url contains 'http' %}
+            {% assign link_url = link.url %}
+            {% assign link_title = link.title %}
+            {% if page_locale == 'zh-CN' %}
+              {% assign link_url = link.url_zh | default: link.url %}
+              {% assign link_title = link.title_zh | default: link.title %}
+            {% endif %}
+            {% if link_url contains 'http' %}
               {% assign domain = '' %}
               {% else %}
               {% assign domain = base_path %}
             {% endif %}
-            <li class="masthead__menu-item"><a href="{{ domain }}{{ link.url }}">{{ link.title }}</a></li>
+            <li class="masthead__menu-item"><a href="{{ domain }}{{ link_url }}">{{ link_title }}</a></li>
           {% endfor %}
         </ul>
         <ul class="hidden-links hidden"></ul>
       </nav>
+      <a class="language-switch" href="{{ page.translation_url | default: i18n.switch_home | relative_url }}" lang="{{ i18n.switch_lang }}" hreflang="{{ i18n.switch_lang }}" aria-label="{{ i18n.switch_description }}">{{ i18n.switch_label }}</a>
     </div>
   </div>
 </div>

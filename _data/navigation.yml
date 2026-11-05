@@ -7,6 +7,8 @@
 main:
   - title: "Publications"
     url: /publications/
+    title_zh: "论文发表"
+    url_zh: /zh/publications/
 
   #- title: "Talks"
   #  url: /talks/    
@@ -18,12 +20,18 @@ main:
   #  url: /portfolio/
   - title: "Awards"
     url: /awards/
+    title_zh: "荣誉奖励"
+    url_zh: /zh/awards/
         
   - title: "Blog Posts"
     url: /year-archive/
+    title_zh: "博客文章"
+    url_zh: /zh/year-archive/
     
   - title: "CV"
     url: /cv/
+    title_zh: "个人简历"
+    url_zh: /zh/cv/
     
   #- title: "Guide"
   #  url: /markdown/

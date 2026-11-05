@@ -1,3 +1,4 @@
+{% include locale.html %}
 {% if post.read_time %}
   {% assign words = post.content | strip_html | number_of_words %}
 {% elsif page.read_time %}
@@ -6,12 +7,12 @@
 
 {% if site.words_per_minute %}
   {% if words < 180 %}
-	  {{ site.data.ui-text[site.locale].less_than | default: "less than" }} 1 {{ site.data.ui-text[site.locale].minute_read | default: "minute read" }}
+	  {{ ui_text.less_than | default: "less than" }} 1 {{ ui_text.minute_read | default: "minute read" }}
 	{% elsif words < 360 %}
-	  1 {{ site.data.ui-text[site.locale].minute_read | default: "minute read" }}
+	  1 {{ ui_text.minute_read | default: "minute read" }}
 	{% else %}
-	  {{ words | divided_by:site.words_per_minute }} {{ site.data.ui-text[site.locale].minute_read | default: "minute read" }}
+	  {{ words | divided_by:site.words_per_minute }} {{ ui_text.minute_read | default: "minute read" }}
 	{% endif %}
 {% else %}
-  {{ site.data.ui-text[site.locale].undefined_wpm | "Undefined parameter words_per_minute at _config.yml" }}
+  {{ ui_text.undefined_wpm | "Undefined parameter words_per_minute at _config.yml" }}
 {% endif %}

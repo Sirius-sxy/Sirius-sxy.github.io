@@ -3,9 +3,10 @@ layout: compress
 ---
 
 {% include base_path %}
+{% include locale.html %}
 
 <!doctype html>
-<html lang="{{ site.locale | slice: 0,2 }}" class="no-js">
+<html lang="{{ page_locale }}" class="no-js">
   <head>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-R8EFF07X6Y"></script>

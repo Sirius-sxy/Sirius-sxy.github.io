@@ -47,6 +47,8 @@ jobs:
         with:
           source: ./
           destination: ./_site
+      - name: Verify bilingual pages and navigation
+        run: python scripts/check_site_languages.py --site-dir _site
       - name: Verify both PDFs are included in the website
         run: |
           cmp files/Xiaoyi-Shi-CV-zh.pdf _site/files/Xiaoyi-Shi-CV-zh.pdf
