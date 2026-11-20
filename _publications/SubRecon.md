@@ -7,7 +7,7 @@ date: 2025-9-22
 venue: 'The 33rd IEEE International Conference on Network Protocols (ICNP 2025)'
 opensource: true
 published: true
-paperurl: 'https://ieeexplore.ieee.org/abstract/document/11192454'
+paperurl: 'https://doi.org/10.1109/ICNP65844.2025.11192387'
 repogiturl: 'https://github.com/THUNAME/SubRecon'
 repolicense: 'Apache-2.0'
 citation: "Jiasheng Zhou, Ying Liu, Lin He, Yifan Yang, Xiaoyi Shi, Daguo Cheng, Chentian Wei, Yun Fan, and Guanglei Song. 2025. SubRecon: Efficient Internet‑wide IPv6 Subnet Discovery and Its Applications. In Proceedings of the 33rd IEEE International Conference on Network Protocols (ICNP 2025). Seoul, South Korea."
