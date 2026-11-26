@@ -77,8 +77,9 @@ class SiteLanguagesTest(unittest.TestCase):
             self.assertEqual(en_entries, zh_entries, route)
         home = self.read_page("/zh/")
         self.assertTrue(home.has_text("代表性论文"))
-        self.assertTrue(home.has_text("可编程网络"))
-        self.assertTrue(home.has_text("大语言模型"))
+        self.assertTrue(home.has_text("流量调度"))
+        self.assertTrue(home.has_text("负载均衡"))
+        self.assertTrue(home.has_text("大模型推理"))
         publications = self.read_page("/zh/publications/")
         for text in ("著作", "期刊论文", "会议论文", "下载 PDF", "引用", "发表于"):
             self.assertTrue(publications.has_text(text), text)
